@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 
 interface Particle {
@@ -23,7 +24,13 @@ function generateParticles(count: number): Particle[] {
 }
 
 export function FloatingParticles({ count = 20 }: { count?: number }) {
-  const particles = generateParticles(count)
+  const [particles, setParticles] = useState<Particle[]>([])
+
+  useEffect(() => {
+    setParticles(generateParticles(count))
+  }, [count])
+
+  if (particles.length === 0) return <div className="absolute inset-0 overflow-hidden pointer-events-none" />
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
