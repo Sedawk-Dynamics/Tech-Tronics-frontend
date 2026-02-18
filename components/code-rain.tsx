@@ -69,8 +69,8 @@ export function CodeRain() {
 
           if (isDark) {
             color = isHead
-              ? `rgba(41, 182, 246, ${item.opacity * 1.0})`
-              : `rgba(0, 188, 212, ${item.opacity * 0.6})`
+              ? `rgba(139, 92, 246, ${item.opacity * 1.0})`
+              : `rgba(99, 102, 241, ${item.opacity * 0.6})`
           } else {
             color = isHead
               ? `rgba(2, 119, 189, ${item.opacity * 0.9})`

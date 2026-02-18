@@ -66,7 +66,14 @@ export function Footer() {
                   alt="Techtronics"
                   width={140}
                   height={36}
-                  className="h-9 w-auto"
+                  className="h-9 w-auto dark:hidden"
+                />
+                <Image
+                  src="/images/Techtronics purple logo.png"
+                  alt="Techtronics"
+                  width={140}
+                  height={36}
+                  className="h-9 w-auto hidden dark:block"
                 />
               </div>
               <p className="text-muted-foreground text-sm mb-4 max-w-md">
@@ -145,7 +152,14 @@ export function Footer() {
                 alt="Techtronics"
                 width={120}
                 height={32}
-                className="h-8 w-auto"
+                className="h-8 w-auto dark:hidden"
+              />
+              <Image
+                src="/images/Techtronics purple logo.png"
+                alt="Techtronics"
+                width={120}
+                height={32}
+                className="h-8 w-auto hidden dark:block"
               />
             </div>
             <p className="text-muted-foreground text-sm">

@@ -62,7 +62,15 @@ export function Navbar() {
               alt="Techtronics"
               width={160}
               height={40}
-              className="h-8 md:h-10 w-auto"
+              className="h-8 md:h-10 w-auto dark:hidden"
+              priority
+            />
+            <Image
+              src="/images/Techtronics purple logo.png"
+              alt="Techtronics"
+              width={160}
+              height={40}
+              className="h-8 md:h-10 w-auto hidden dark:block"
               priority
             />
           </Link>

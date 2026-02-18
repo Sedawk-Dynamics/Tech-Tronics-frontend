@@ -15,7 +15,7 @@ export function HeroSection() {
           src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop"
           alt=""
           fill
-          className="object-cover opacity-[0.07] dark:opacity-[0.12]"
+          className="object-cover opacity-[0.18] dark:opacity-[0.12]"
           priority
           unoptimized
         />

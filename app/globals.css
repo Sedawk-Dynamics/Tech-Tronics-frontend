@@ -34,38 +34,90 @@
     /* Gradient tokens */
     --gradient-start: 197 88% 48%;
     --gradient-end: 187 92% 50%;
+
+    /* tt palette tokens (light = blue/cyan) */
+    --tt-blue-50: 199 96% 95%;
+    --tt-blue-100: 199 93% 84%;
+    --tt-blue-200: 199 91% 74%;
+    --tt-blue-300: 199 90% 70%;
+    --tt-blue-400: 199 92% 56%;
+    --tt-blue-500: 199 90% 48%;
+    --tt-blue-600: 202 88% 45%;
+    --tt-blue-700: 204 87% 41%;
+    --tt-blue-800: 206 90% 37%;
+    --tt-blue-900: 210 95% 30%;
+    --tt-cyan-50: 187 71% 94%;
+    --tt-cyan-100: 186 74% 82%;
+    --tt-cyan-200: 186 73% 71%;
+    --tt-cyan-300: 187 71% 63%;
+    --tt-cyan-400: 187 80% 53%;
+    --tt-cyan-500: 187 100% 42%;
+    --tt-cyan-600: 187 100% 38%;
+    --tt-cyan-700: 187 100% 33%;
+    --tt-cyan-800: 188 100% 28%;
+    --tt-cyan-900: 188 100% 19%;
+    --tt-sky: 199 91% 74%;
+    --tt-deep: 206 90% 37%;
+    --tt-navy: 215 55% 10%;
+    --tt-dark: 214 62% 6%;
   }
 
   /* ========== DARK THEME ========== */
   .dark {
-    --background: 210 35% 5%;
-    --foreground: 200 40% 98%;
-    --card: 210 32% 8%;
-    --card-foreground: 200 40% 98%;
-    --popover: 210 32% 8%;
-    --popover-foreground: 200 40% 98%;
-    --primary: 197 88% 55%;
+    --background: 270 35% 5%;
+    --foreground: 260 40% 98%;
+    --card: 268 32% 8%;
+    --card-foreground: 260 40% 98%;
+    --popover: 268 32% 8%;
+    --popover-foreground: 260 40% 98%;
+    --primary: 258 90% 66%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 210 25% 12%;
-    --secondary-foreground: 200 40% 98%;
-    --muted: 210 25% 13%;
-    --muted-foreground: 205 18% 55%;
-    --accent: 187 92% 50%;
+    --secondary: 268 25% 12%;
+    --secondary-foreground: 260 40% 98%;
+    --muted: 268 25% 13%;
+    --muted-foreground: 265 18% 55%;
+    --accent: 239 84% 67%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 98%;
-    --border: 210 22% 14%;
-    --input: 210 22% 14%;
-    --ring: 197 88% 55%;
+    --border: 268 22% 14%;
+    --input: 268 22% 14%;
+    --ring: 258 90% 66%;
 
     /* Glass effect tokens */
-    --glass-bg: 210 32% 8% / 0.92;
-    --glass-border: 210 22% 18% / 0.5;
-    --glass-shadow: 197 88% 55% / 0.15;
+    --glass-bg: 268 32% 8% / 0.92;
+    --glass-border: 268 22% 18% / 0.5;
+    --glass-shadow: 258 90% 66% / 0.15;
 
     /* Gradient tokens */
-    --gradient-start: 197 88% 55%;
-    --gradient-end: 187 92% 50%;
+    --gradient-start: 258 90% 66%;
+    --gradient-end: 239 84% 67%;
+
+    /* tt palette tokens (dark = purple) */
+    --tt-blue-50: 263 100% 98%;
+    --tt-blue-100: 263 83% 93%;
+    --tt-blue-200: 263 83% 87%;
+    --tt-blue-300: 262 81% 78%;
+    --tt-blue-400: 263 70% 71%;
+    --tt-blue-500: 258 90% 66%;
+    --tt-blue-600: 263 70% 58%;
+    --tt-blue-700: 265 72% 51%;
+    --tt-blue-800: 267 69% 43%;
+    --tt-blue-900: 269 67% 35%;
+    --tt-cyan-50: 239 84% 97%;
+    --tt-cyan-100: 239 84% 91%;
+    --tt-cyan-200: 239 84% 85%;
+    --tt-cyan-300: 238 74% 76%;
+    --tt-cyan-400: 238 74% 69%;
+    --tt-cyan-500: 239 84% 67%;
+    --tt-cyan-600: 239 76% 59%;
+    --tt-cyan-700: 239 76% 52%;
+    --tt-cyan-800: 239 76% 45%;
+    --tt-cyan-900: 239 76% 38%;
+    --tt-sky: 262 81% 78%;
+    --tt-deep: 267 69% 43%;
+    --tt-navy: 268 50% 8%;
+    --tt-dark: 270 55% 4%;
   }
 }
 
