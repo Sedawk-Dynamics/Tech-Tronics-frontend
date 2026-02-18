@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { ArrowRight, Sparkles } from "lucide-react"
+import { ArrowRight, Sparkles, ChevronDown, Shield, Clock, Users } from "lucide-react"
 import { TypingHero } from "@/components/typing-hero"
 import Image from "next/image"
 
@@ -39,6 +39,24 @@ export function HeroSection() {
       />
 
       <div className="max-w-4xl mx-auto text-center space-y-6">
+        {/* Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="flex justify-center"
+        >
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-tt-blue-500/10 dark:bg-tt-blue-500/15 border border-tt-blue-500/20 rounded-full backdrop-blur-sm">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-tt-blue-400 opacity-75 animate-ping" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-tt-blue-500" />
+            </span>
+            <span className="text-sm text-tt-blue-600 dark:text-tt-blue-400 font-medium">
+              Trusted by 500+ Global Companies
+            </span>
+          </div>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -89,8 +107,43 @@ export function HeroSection() {
             </span>
           </Link>
         </motion.div>
+
+        {/* Trust indicators */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="flex flex-wrap items-center justify-center gap-6 pt-10"
+        >
+          {[
+            { icon: Shield, text: "Enterprise Security" },
+            { icon: Clock, text: "24/7 Support" },
+            { icon: Users, text: "200+ IT Experts" },
+          ].map((item) => (
+            <div key={item.text} className="flex items-center gap-2 text-muted-foreground">
+              <item.icon className="w-4 h-4 text-tt-blue-500" />
+              <span className="text-sm font-medium">{item.text}</span>
+            </div>
+          ))}
+        </motion.div>
       </div>
 
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="flex flex-col items-center gap-2"
+        >
+          <span className="text-xs text-muted-foreground/60 uppercase tracking-widest">Scroll</span>
+          <ChevronDown className="w-5 h-5 text-muted-foreground/40" />
+        </motion.div>
+      </motion.div>
     </section>
   )
 }

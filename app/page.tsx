@@ -16,6 +16,12 @@ import { LogoTicker } from "@/components/logo-ticker"
 import { SkillsVisualization } from "@/components/skills-visualization"
 import { FeatureTracking } from "@/components/feature-tracking"
 import { GlowingOrbs } from "@/components/floating-particles"
+import { TechStackSection } from "@/components/tech-stack-section"
+import { WhyChooseUsSection } from "@/components/why-choose-us-section"
+import { ClientReviewsSection } from "@/components/client-reviews-section"
+import { FaqSection } from "@/components/faq-section"
+import { NewsletterSection } from "@/components/newsletter-section"
+import { ConsultationSection } from "@/components/consultation-section"
 
 const CodeRain = dynamic(
   () => import("@/components/code-rain").then((mod) => ({ default: mod.CodeRain })),
@@ -53,12 +59,18 @@ export default function Home() {
           <AboutPreview />
           <ServicesSection />
           <StatsCounter />
+          <TechStackSection />
           <SkillsVisualization />
           <IndustrySection />
+          <WhyChooseUsSection />
           <FeatureTracking />
           <PortfolioSection />
+          <ClientReviewsSection />
           <TestimonialsSection />
           <ProcessSection />
+          <ConsultationSection />
+          <FaqSection />
+          <NewsletterSection />
           <CtaSection />
         </div>
 

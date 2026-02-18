@@ -9,14 +9,43 @@ interface StatItem {
   value: number
   suffix: string
   label: string
-  color: string
+  gradient: string
+  iconBg: string
 }
 
 const stats: StatItem[] = [
-  { icon: Award, value: 25, suffix: "+", label: "Years Experience", color: "text-tt-blue-500" },
-  { icon: Briefcase, value: 500, suffix: "+", label: "Successful Projects", color: "text-tt-cyan-500" },
-  { icon: Users, value: 200, suffix: "+", label: "IT Professionals", color: "text-tt-cyan-500" },
-  { icon: CheckCircle, value: 100, suffix: "%", label: "Results Guaranteed", color: "text-tt-cyan-600" },
+  {
+    icon: Award,
+    value: 25,
+    suffix: "+",
+    label: "Years Experience",
+    gradient: "from-tt-blue-500 to-tt-blue-600",
+    iconBg: "from-tt-blue-500/15 to-tt-blue-600/15",
+  },
+  {
+    icon: Briefcase,
+    value: 500,
+    suffix: "+",
+    label: "Successful Projects",
+    gradient: "from-tt-cyan-500 to-tt-cyan-600",
+    iconBg: "from-tt-cyan-500/15 to-tt-cyan-600/15",
+  },
+  {
+    icon: Users,
+    value: 200,
+    suffix: "+",
+    label: "IT Professionals",
+    gradient: "from-violet-500 to-purple-500",
+    iconBg: "from-violet-500/15 to-purple-500/15",
+  },
+  {
+    icon: CheckCircle,
+    value: 100,
+    suffix: "%",
+    label: "Results Guaranteed",
+    gradient: "from-emerald-500 to-green-500",
+    iconBg: "from-emerald-500/15 to-green-500/15",
+  },
 ]
 
 function CountUp({ target, suffix }: { target: number; suffix: string }) {
@@ -62,25 +91,41 @@ function CountUp({ target, suffix }: { target: number; suffix: string }) {
 
 export function StatsCounter() {
   return (
-    <section className="py-20 px-4 sm:px-6">
+    <section className="py-20 px-4 sm:px-6 relative overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-tt-blue-600 via-tt-blue-500 to-tt-cyan-500" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,255,255,0.15),transparent)]" />
+
+      {/* Dot pattern */}
+      <div
+        className="absolute inset-0 -z-[5] opacity-10"
+        style={{
+          backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)",
+          backgroundSize: "30px 30px",
+        }}
+      />
+
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="text-center p-6 bg-card border border-border rounded-xl hover:border-tt-blue-500/30 transition-all duration-300"
+              whileHover={{ y: -4, scale: 1.02 }}
+              className="text-center p-6 sm:p-8 bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl hover:bg-white/15 transition-all duration-300"
             >
-              <div className="inline-flex p-3 bg-gradient-to-br from-tt-blue-500/10 to-tt-cyan-500/10 rounded-xl mb-4">
-                <stat.icon className={`w-7 h-7 ${stat.color}`} />
+              <div className={`inline-flex p-3.5 bg-white/15 rounded-2xl mb-5`}>
+                <stat.icon className="w-7 h-7 text-white" />
               </div>
-              <div className={`text-3xl sm:text-4xl font-bold mb-2 ${stat.color}`}>
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 tracking-tight">
                 <CountUp target={stat.value} suffix={stat.suffix} />
               </div>
-              <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
+              <div className="text-sm text-white/70 font-medium uppercase tracking-wider">
+                {stat.label}
+              </div>
             </motion.div>
           ))}
         </div>
