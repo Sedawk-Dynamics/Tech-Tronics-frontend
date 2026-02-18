@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* ========== LIGHT THEME ========== */
+  :root {
+    --background: 200 20% 98%;
+    --foreground: 210 30% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 30% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 30% 10%;
+    --primary: 197 88% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 200 18% 93%;
+    --secondary-foreground: 210 30% 10%;
+    --muted: 200 18% 95%;
+    --muted-foreground: 205 16% 47%;
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 200 20% 88%;
+    --input: 200 20% 88%;
+    --ring: 197 88% 55%;
+    --radius: 0.625rem;
+
+    /* Glass effect tokens */
+    --glass-bg: 0 0% 100% / 0.72;
+    --glass-border: 200 20% 88% / 0.5;
+    --glass-shadow: 197 88% 55% / 0.08;
+
+    /* Gradient tokens */
+    --gradient-start: 197 88% 48%;
+    --gradient-end: 187 92% 50%;
+  }
+
+  /* ========== DARK THEME ========== */
+  .dark {
+    --background: 210 35% 5%;
+    --foreground: 200 40% 98%;
+    --card: 210 32% 8%;
+    --card-foreground: 200 40% 98%;
+    --popover: 210 32% 8%;
+    --popover-foreground: 200 40% 98%;
+    --primary: 197 88% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 25% 12%;
+    --secondary-foreground: 200 40% 98%;
+    --muted: 210 25% 13%;
+    --muted-foreground: 205 18% 55%;
+    --accent: 187 92% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 210 22% 14%;
+    --input: 210 22% 14%;
+    --ring: 197 88% 55%;
+
+    /* Glass effect tokens */
+    --glass-bg: 210 32% 8% / 0.6;
+    --glass-border: 210 22% 18% / 0.5;
+    --glass-shadow: 197 88% 55% / 0.15;
+
+    /* Gradient tokens */
+    --gradient-start: 197 88% 55%;
+    --gradient-end: 187 92% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ========== SMOOTH THEME TRANSITION ========== */
+html {
+  scroll-behavior: smooth;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+/* Theme transition on all elements when switching */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, box-shadow;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+
+/* Opt-out for animations that have their own transitions */
+[data-no-theme-transition],
+[data-no-theme-transition] *,
+[data-no-theme-transition] *::before,
+[data-no-theme-transition] *::after {
+  transition-property: none !important;
+}
+
+/* ========== SCROLLBAR ========== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* ========== GLASS MORPHISM UTILITY ========== */
+.glass {
+  background: hsl(var(--glass-bg));
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid hsl(var(--glass-border));
+}
+
+.glass-strong {
+  background: hsl(var(--glass-bg));
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid hsl(var(--glass-border));
+  box-shadow: 0 8px 32px hsl(var(--glass-shadow));
+}
+
+/* ========== GLOW EFFECTS ========== */
+.glow-primary {
+  box-shadow: 0 0 20px hsl(var(--primary) / 0.3),
+    0 0 60px hsl(var(--primary) / 0.1);
+}
+
+.glow-accent {
+  box-shadow: 0 0 20px hsl(var(--accent) / 0.3),
+    0 0 60px hsl(var(--accent) / 0.1);
+}
+
+/* ========== GRADIENT TEXT ========== */
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--gradient-start)),
+    hsl(var(--gradient-end))
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========== SELECTION ========== */
+::selection {
+  background: hsl(var(--primary) / 0.2);
+  color: hsl(var(--foreground));
+}
