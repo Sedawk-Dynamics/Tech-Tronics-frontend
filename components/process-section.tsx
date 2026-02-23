@@ -51,7 +51,9 @@ const steps = [
 
 export function ProcessSection() {
   return (
-    <section className="py-20 px-4 sm:px-6">
+    <section className="py-20 px-4 sm:px-6 relative overflow-hidden">
+      <div className="absolute inset-0 cyber-grid opacity-15 -z-10" />
+
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -60,14 +62,12 @@ export function ProcessSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-tt-blue-500/10 border border-tt-blue-500/20 rounded-full mb-4">
-            <span className="text-sm text-tt-blue-500 font-medium">Our Process</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-tt-blue-500/5 border border-tt-blue-500/15 rounded-md mb-4">
+            <span className="text-sm text-tt-blue-500 font-mono">./process --steps</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             How We{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-tt-blue-500 to-tt-cyan-500">
-              Work
-            </span>
+            <span className="gradient-text">Work</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Our proven 6-step methodology ensures consistent, high-quality delivery.
@@ -82,14 +82,14 @@ export function ProcessSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group relative p-6 bg-card border border-border rounded-xl hover:border-tt-blue-500/50 hover:shadow-lg transition-all duration-300"
+              className="group relative p-6 bg-card border border-border rounded-lg hover:border-tt-blue-500/30 hover:shadow-lg hover:shadow-tt-blue-500/8 transition-all duration-500"
             >
               {/* Step number */}
-              <div className="absolute top-4 right-4 text-4xl font-bold text-muted-foreground/10 group-hover:text-tt-blue-500/10 transition-colors">
+              <div className="absolute top-4 right-4 font-mono text-3xl font-bold text-muted-foreground/10 group-hover:text-tt-blue-500/15 transition-colors duration-500">
                 {step.number}
               </div>
 
-              <div className="p-3 bg-gradient-to-br from-tt-blue-500/10 to-tt-cyan-500/10 rounded-lg w-fit mb-4 group-hover:scale-110 transition-transform duration-300">
+              <div className="p-3 bg-tt-blue-500/10 border border-tt-blue-500/15 rounded-md w-fit mb-4 group-hover:shadow-lg group-hover:shadow-tt-blue-500/10 transition-all duration-300">
                 <step.icon className="w-6 h-6 text-tt-blue-500" />
               </div>
 
@@ -100,7 +100,7 @@ export function ProcessSection() {
 
               {/* Connector line */}
               {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute -right-3 top-1/2 w-6 h-px bg-border" />
+                <div className="hidden lg:block absolute -right-3 top-1/2 w-6 h-px bg-gradient-to-r from-border to-tt-blue-500/20" />
               )}
             </motion.div>
           ))}

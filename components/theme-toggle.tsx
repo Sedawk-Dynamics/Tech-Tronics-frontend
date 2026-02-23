@@ -26,7 +26,7 @@ export function ThemeToggle() {
   return (
     <motion.button
       onClick={cycleTheme}
-      className="relative p-2.5 rounded-xl glass hover:glow-primary"
+      className="relative p-2.5 rounded-md border border-border bg-card/50 hover:border-tt-blue-500/40 hover:shadow-md hover:shadow-tt-blue-500/10 transition-all duration-300"
       whileHover={{ scale: 1.08 }}
       whileTap={{ scale: 0.92 }}
       aria-label={`Current theme: ${theme}. Click to change.`}
@@ -38,7 +38,7 @@ export function ThemeToggle() {
           </motion.div>
         ) : (
           <motion.div key="sun" {...iconVariants} transition={{ duration: 0.2 }}>
-            <Sun className="w-[18px] h-[18px] text-tt-cyan-500" />
+            <Sun className="w-[18px] h-[18px] text-tt-blue-500" />
           </motion.div>
         )}
       </AnimatePresence>

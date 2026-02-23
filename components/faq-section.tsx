@@ -64,19 +64,28 @@ function FaqItem({
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
       viewport={{ once: true }}
-      className="border border-border rounded-xl overflow-hidden hover:border-tt-blue-500/30 transition-colors duration-300"
+      className={`rounded-md overflow-hidden transition-all duration-500 ${
+        isOpen
+          ? "bg-card border border-tt-blue-500/30 shadow-lg shadow-tt-blue-500/5"
+          : "bg-card/50 border border-border hover:border-tt-blue-500/20"
+      }`}
     >
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between p-5 text-left bg-card hover:bg-secondary/50 transition-colors duration-200"
+        className="w-full flex items-center justify-between p-5 text-left hover:bg-secondary/30 transition-colors duration-200"
       >
-        <span className="font-semibold text-foreground pr-4">{faq.question}</span>
+        <span className="flex items-center gap-3 pr-4">
+          <span className="font-mono text-tt-blue-500 text-sm flex-shrink-0">{`[${String(index).padStart(2, "0")}]`}</span>
+          <span className="font-semibold text-foreground">{faq.question}</span>
+        </span>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
           className="flex-shrink-0"
         >
-          <ChevronDown className={`w-5 h-5 ${isOpen ? "text-tt-blue-500" : "text-muted-foreground"} transition-colors`} />
+          <div className={`p-1 rounded-md transition-colors ${isOpen ? "bg-tt-blue-500/15" : ""}`}>
+            <ChevronDown className={`w-5 h-5 transition-colors ${isOpen ? "text-tt-blue-500" : "text-muted-foreground"}`} />
+          </div>
         </motion.div>
       </button>
 
@@ -88,9 +97,10 @@ function FaqItem({
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <div className="px-5 pb-5 bg-card">
-              <div className="pt-2 border-t border-border/50">
-                <p className="text-muted-foreground leading-relaxed pt-3">
+            <div className="px-5 pb-5">
+              <div className="pt-2 border-t border-tt-blue-500/10">
+                <p className="text-muted-foreground leading-relaxed pt-3 font-mono text-sm">
+                  <span className="text-tt-blue-500/50">{"> "}</span>
                   {faq.answer}
                 </p>
               </div>
@@ -107,9 +117,7 @@ export function FaqSection() {
 
   return (
     <section className="py-20 px-4 sm:px-6 bg-secondary/30 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-1/4 right-0 w-80 h-80 bg-tt-blue-500/5 rounded-full blur-[120px] -z-10" />
-      <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-tt-cyan-500/5 rounded-full blur-[120px] -z-10" />
+      <div className="absolute inset-0 cyber-grid opacity-20 -z-10" />
 
       <div className="max-w-3xl mx-auto">
         <motion.div
@@ -119,15 +127,13 @@ export function FaqSection() {
           viewport={{ once: true }}
           className="text-center mb-14"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-tt-blue-500/10 border border-tt-blue-500/20 rounded-full mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-tt-blue-500/5 border border-tt-blue-500/15 rounded-md mb-4">
             <HelpCircle className="w-3.5 h-3.5 text-tt-blue-500" />
-            <span className="text-sm text-tt-blue-500 font-medium">FAQ</span>
+            <span className="text-sm text-tt-blue-500 font-mono">help --faq</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             Frequently Asked{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-tt-blue-500 to-tt-cyan-500">
-              Questions
-            </span>
+            <span className="gradient-text">Questions</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-lg">
             Got questions? We&apos;ve got answers. Here are the most common questions

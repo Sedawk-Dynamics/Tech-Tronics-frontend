@@ -42,15 +42,19 @@ export function TypingHero() {
   }, [displayText, isDeleting, currentPhraseIndex])
 
   return (
-    <div className="space-y-4">
-      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+    <div className="space-y-5">
+      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight font-mono leading-[1.1]">
+        {/* Terminal prompt */}
+        <span className="text-tt-blue-500/40 dark:text-tt-blue-500/50">$ </span>
         <span className="text-foreground">Your </span>
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-tt-blue-400 via-tt-cyan-400 to-tt-cyan-500">
+        {/* Animated text with mode-aware glow */}
+        <span className="text-tt-blue-500 dark:text-tt-blue-400 hero-typing-glow">
           {displayText}
         </span>
-        <span className="animate-pulse text-tt-blue-500">|</span>
+        {/* Block cursor */}
+        <span className="inline-block w-[3px] sm:w-[4px] h-[0.85em] bg-tt-blue-500 dark:bg-tt-blue-400 ml-0.5 align-middle animate-blink hero-cursor-glow" />
       </h1>
-      <p className="text-lg sm:text-xl text-foreground/80 font-medium">
+      <p className="text-sm sm:text-base text-tt-blue-600/70 dark:text-tt-blue-400/40 font-mono font-medium uppercase tracking-[0.3em]">
         Startup Begins Here
       </p>
     </div>

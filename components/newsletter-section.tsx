@@ -25,26 +25,31 @@ export function NewsletterSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="relative overflow-hidden bg-card border border-border rounded-3xl p-8 sm:p-12"
+          className="relative overflow-hidden rounded-lg p-8 sm:p-12 bg-card border border-tt-blue-500/15"
         >
-          {/* Decorative background elements */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-tt-blue-500/10 to-tt-cyan-500/10 rounded-full -translate-y-1/2 translate-x-1/3 blur-2xl" />
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-tt-cyan-500/10 to-tt-blue-500/10 rounded-full translate-y-1/2 -translate-x-1/3 blur-2xl" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-tt-blue-500/3 rounded-full blur-3xl" />
+          {/* Grid background */}
+          <div className="absolute inset-0 cyber-grid opacity-20 rounded-lg" />
+
+          {/* Subtle glow */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-tt-blue-500/5 rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl" />
+
+          {/* Top glow line */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tt-blue-500/40 to-transparent" />
 
           <div className="relative z-10">
             <div className="flex justify-center mb-6">
-              <div className="p-4 bg-gradient-to-br from-tt-blue-500/10 to-tt-cyan-500/10 border border-tt-blue-500/20 rounded-2xl">
-                <Mail className="w-8 h-8 text-tt-blue-500" />
+              <div className="p-3 bg-tt-blue-500/10 border border-tt-blue-500/20 rounded-md">
+                <Mail className="w-7 h-7 text-tt-blue-500" />
               </div>
             </div>
 
             <div className="text-center mb-8">
+              <div className="inline-block mb-3 px-3 py-1 bg-tt-blue-500/5 border border-tt-blue-500/15 rounded-md">
+                <span className="font-mono text-xs text-tt-blue-500">$ subscribe --newsletter</span>
+              </div>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-3">
                 Stay Updated with{" "}
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-tt-blue-500 to-tt-cyan-500">
-                  Tech Insights
-                </span>
+                <span className="gradient-text">Tech Insights</span>
               </h2>
               <p className="text-muted-foreground max-w-lg mx-auto">
                 Subscribe to our newsletter for the latest technology trends, industry
@@ -60,16 +65,16 @@ export function NewsletterSection() {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter your email address"
+                      placeholder="user@domain.com"
                       required
-                      className="w-full px-5 py-3.5 bg-secondary/80 border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-tt-blue-500/50 focus:border-tt-blue-500 transition-all duration-300"
+                      className="w-full px-4 py-3 bg-secondary/80 border border-border rounded-md font-mono text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-tt-blue-500/50 focus:border-tt-blue-500 transition-all duration-300"
                     />
                   </div>
                   <motion.button
                     type="submit"
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
-                    className="px-6 py-3.5 bg-gradient-to-r from-tt-blue-500 to-tt-cyan-500 text-white rounded-xl font-semibold shadow-lg shadow-tt-blue-500/25 hover:shadow-tt-blue-500/40 transition-shadow duration-300 flex items-center justify-center gap-2"
+                    className="px-6 py-3 bg-tt-blue-500 text-background rounded-md font-mono font-semibold shadow-lg shadow-tt-blue-500/20 hover:shadow-tt-blue-500/40 transition-shadow duration-300 flex items-center justify-center gap-2"
                   >
                     Subscribe
                     <Send className="w-4 h-4" />
@@ -79,18 +84,18 @@ export function NewsletterSection() {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="flex items-center justify-center gap-3 py-3.5 px-6 bg-emerald-500/10 border border-emerald-500/30 rounded-xl"
+                  className="flex items-center justify-center gap-3 py-3 px-6 bg-tt-blue-500/10 border border-tt-blue-500/30 rounded-md"
                 >
-                  <CheckCircle className="w-5 h-5 text-emerald-500" />
-                  <span className="text-emerald-600 dark:text-emerald-400 font-medium">
-                    Thank you! You&apos;re now subscribed.
+                  <CheckCircle className="w-5 h-5 text-tt-blue-500" />
+                  <span className="text-tt-blue-500 font-mono text-sm">
+                    [OK] Subscription confirmed successfully.
                   </span>
                 </motion.div>
               )}
             </form>
 
-            <p className="text-center text-xs text-muted-foreground mt-4">
-              No spam, unsubscribe anytime. We respect your privacy.
+            <p className="text-center text-xs text-muted-foreground mt-4 font-mono">
+              // No spam. Unsubscribe anytime.
             </p>
           </div>
         </motion.div>
