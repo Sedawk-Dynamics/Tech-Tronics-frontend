@@ -418,7 +418,7 @@ html.dark {
 .matrix-char {
   position: absolute;
   font-family: var(--font-mono), 'Courier New', monospace;
-  color: hsl(var(--primary) / 0.08);
+  color: hsl(var(--primary) / 0.18);
   font-size: 14px;
   animation: matrix-drop linear infinite;
   white-space: nowrap;
@@ -433,8 +433,8 @@ html.dark {
     0deg,
     transparent,
     transparent 2px,
-    hsl(var(--primary) / 0.015) 2px,
-    hsl(var(--primary) / 0.015) 4px
+    hsl(var(--primary) / 0.045) 2px,
+    hsl(var(--primary) / 0.045) 4px
   );
   pointer-events: none;
 }
@@ -451,9 +451,27 @@ html.dark {
 /* ========== HERO TERMINAL GLOW ========== */
 .hero-terminal-glow {
   box-shadow:
-    0 0 0 1px hsl(var(--primary) / 0.08),
-    0 8px 40px hsl(var(--primary) / 0.04),
-    0 2px 12px hsl(var(--primary) / 0.03);
+    0 0 0 1px hsl(var(--primary) / 0.2),
+    0 0 20px hsl(var(--primary) / 0.08),
+    0 8px 40px hsl(var(--primary) / 0.1),
+    0 2px 12px hsl(var(--primary) / 0.06);
+  animation: hero-terminal-pulse-light 4s ease-in-out infinite;
+}
+@keyframes hero-terminal-pulse-light {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px hsl(var(--primary) / 0.2),
+      0 0 20px hsl(var(--primary) / 0.08),
+      0 8px 40px hsl(var(--primary) / 0.1),
+      0 2px 12px hsl(var(--primary) / 0.06);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px hsl(var(--primary) / 0.3),
+      0 0 30px hsl(var(--primary) / 0.12),
+      0 8px 40px hsl(var(--primary) / 0.15),
+      0 2px 12px hsl(var(--primary) / 0.1);
+  }
 }
 .dark .hero-terminal-glow {
   box-shadow:
@@ -482,7 +500,7 @@ html.dark {
 
 /* ========== HERO TYPING GLOW ========== */
 .hero-typing-glow {
-  text-shadow: 0 0 20px hsl(var(--primary) / 0.15);
+  text-shadow: 0 0 20px hsl(var(--primary) / 0.3), 0 0 40px hsl(var(--primary) / 0.1);
 }
 .dark .hero-typing-glow {
   text-shadow:
@@ -493,7 +511,7 @@ html.dark {
 
 /* ========== HERO CURSOR GLOW ========== */
 .hero-cursor-glow {
-  box-shadow: none;
+  box-shadow: 0 0 6px hsl(var(--primary) / 0.4), 0 0 12px hsl(var(--primary) / 0.15);
 }
 .dark .hero-cursor-glow {
   box-shadow:
@@ -516,7 +534,8 @@ html.dark {
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   border-radius: 50%;
-  background: hsl(var(--primary) / 0.15);
+  background: hsl(var(--primary) / 0.35);
+  box-shadow: 0 0 4px hsl(var(--primary) / 0.2);
 }
 .dark .hero-orbit-dot {
   background: hsl(var(--primary) / 0.3);
@@ -533,8 +552,9 @@ html.dark {
   top: 0;
   left: -100%;
   width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.15), hsl(var(--primary) / 0.3), hsl(var(--primary) / 0.15), transparent);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), hsl(var(--primary) / 0.5), hsl(var(--primary) / 0.3), transparent);
+  box-shadow: 0 0 8px hsl(var(--primary) / 0.1), 0 0 20px hsl(var(--primary) / 0.05);
   animation: hero-scan-sweep 6s ease-in-out infinite;
 }
 .dark .hero-scan-beam {
@@ -547,4 +567,120 @@ html.dark {
   50% { top: 95%; left: 100%; opacity: 1; }
   60% { opacity: 0; }
   100% { top: 5%; left: -100%; opacity: 0; }
+}
+
+/* ========== HERO VERTICAL SCAN BEAM ========== */
+.hero-vscan-beam {
+  position: absolute;
+  left: 0;
+  top: -100%;
+  height: 100%;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, hsl(var(--primary) / 0.25), hsl(var(--primary) / 0.4), hsl(var(--primary) / 0.25), transparent);
+  box-shadow: 0 0 6px hsl(var(--primary) / 0.08);
+  animation: hero-vscan-sweep 8s ease-in-out infinite 3s;
+}
+.dark .hero-vscan-beam {
+  background: linear-gradient(180deg, transparent, hsl(var(--primary) / 0.15), hsl(var(--primary) / 0.35), hsl(var(--primary) / 0.15), transparent);
+  box-shadow: 0 0 10px hsl(var(--primary) / 0.1), 0 0 20px hsl(var(--primary) / 0.05);
+}
+@keyframes hero-vscan-sweep {
+  0% { left: 5%; top: -100%; opacity: 0; }
+  10% { opacity: 1; }
+  50% { left: 95%; top: 100%; opacity: 1; }
+  60% { opacity: 0; }
+  100% { left: 5%; top: -100%; opacity: 0; }
+}
+
+/* ========== HERO BINARY STREAMS ========== */
+.hero-binary-stream {
+  position: absolute;
+  left: 0;
+  white-space: nowrap;
+  font-family: var(--font-mono), 'Courier New', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  animation: hero-binary-scroll-left linear infinite;
+}
+.hero-binary-stream-right {
+  animation-name: hero-binary-scroll-right;
+}
+@keyframes hero-binary-scroll-left {
+  0% { transform: translateX(100vw); }
+  100% { transform: translateX(-100%); }
+}
+@keyframes hero-binary-scroll-right {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100vw); }
+}
+
+/* ========== HERO HEXAGON ========== */
+.hero-hexagon {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  position: relative;
+}
+.hero-hexagon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: transparent;
+  border: 1px solid hsl(var(--primary) / 0.2);
+}
+.dark .hero-hexagon::before {
+  border-color: hsl(var(--primary) / 0.15);
+}
+
+/* ========== HERO RADAR SWEEP ========== */
+.hero-radar-sweep {
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  position: relative;
+  animation: hero-radar-rotate 8s linear infinite;
+}
+.hero-radar-sweep::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+  transform-origin: 0% 0%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    hsl(var(--primary) / 0.1) 30deg,
+    transparent 60deg
+  );
+}
+.dark .hero-radar-sweep::before {
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    hsl(var(--primary) / 0.08) 30deg,
+    transparent 60deg
+  );
+}
+@keyframes hero-radar-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ========== HERO GLITCH EFFECT ========== */
+.hero-glitch-container {
+  animation: hero-glitch-flicker 12s linear infinite;
+}
+@keyframes hero-glitch-flicker {
+  0%, 100% { filter: none; }
+  49.5% { filter: none; }
+  49.6% { filter: brightness(1.05) hue-rotate(2deg); transform: translate(1px, 0); }
+  49.8% { filter: brightness(0.95) hue-rotate(-2deg); transform: translate(-1px, 0); }
+  50% { filter: none; transform: translate(0); }
+  83.3% { filter: none; }
+  83.4% { filter: brightness(1.03) hue-rotate(1deg); transform: translate(0, 1px); }
+  83.5% { filter: none; transform: translate(0); }
 }

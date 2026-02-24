@@ -120,31 +120,31 @@ export function HeroSection() {
         <motion.div
           animate={{ x: [0, 30, -20, 0], y: [0, -15, 10, 0] }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-tt-blue-500/8 dark:bg-tt-blue-500/12 rounded-full blur-[180px]"
+          className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-tt-blue-500/20 dark:bg-tt-blue-500/12 rounded-full blur-[180px]"
         />
         <motion.div
           animate={{ x: [0, -25, 15, 0], y: [0, 20, -10, 0] }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[-5%] left-[20%] w-[500px] h-[350px] bg-tt-blue-400/5 dark:bg-tt-blue-400/8 rounded-full blur-[140px]"
+          className="absolute bottom-[-5%] left-[20%] w-[500px] h-[350px] bg-tt-blue-400/15 dark:bg-tt-blue-400/8 rounded-full blur-[140px]"
         />
         <motion.div
           animate={{ x: [0, 20, -30, 0], y: [0, -25, 15, 0] }}
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[30%] right-[-5%] w-[400px] h-[400px] bg-tt-cyan-500/4 dark:bg-tt-cyan-500/6 rounded-full blur-[120px]"
+          className="absolute top-[30%] right-[-5%] w-[400px] h-[400px] bg-tt-cyan-500/12 dark:bg-tt-cyan-500/6 rounded-full blur-[120px]"
         />
         {/* Extra pulsing center glow */}
         <motion.div
           animate={{ opacity: [0.03, 0.08, 0.03], scale: [0.9, 1.1, 0.9] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-tt-blue-500/5 dark:bg-tt-blue-500/10 rounded-full blur-[200px]"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-tt-blue-500/15 dark:bg-tt-blue-500/10 rounded-full blur-[200px]"
         />
       </div>
 
       {/* Noise texture overlay */}
-      <div className="absolute inset-0 -z-25 opacity-[0.015] dark:opacity-[0.03]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E\")" }} />
+      <div className="absolute inset-0 -z-25 opacity-[0.04] dark:opacity-[0.03]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E\")" }} />
 
       {/* Cyber-grid */}
-      <div className="absolute inset-0 -z-20 cyber-grid opacity-[0.06] dark:opacity-[0.12]" />
+      <div className="absolute inset-0 -z-20 cyber-grid opacity-[0.15] dark:opacity-[0.12]" />
 
       {/* Scanlines */}
       <div className="absolute inset-0 -z-15 pointer-events-none scanlines-overlay" />
@@ -169,7 +169,7 @@ export function HeroSection() {
               delay: i * 1.2,
               ease: "easeInOut",
             }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-tt-blue-500/10 dark:border-tt-blue-500/20"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-tt-blue-500/25 dark:border-tt-blue-500/20"
             style={{ width: size, height: size }}
           />
         ))}
@@ -219,7 +219,7 @@ export function HeroSection() {
                     ease: "easeInOut",
                     delay: stream.delay + packetIndex * 0.14,
                   }}
-                  className="rounded-sm border border-tt-blue-500/10 dark:border-tt-blue-500/20 bg-tt-blue-500/[0.03] dark:bg-tt-blue-500/[0.06] px-1.5 py-0.5 text-[10px] tracking-widest text-tt-blue-500/30 dark:text-tt-blue-400/40"
+                  className="rounded-sm border border-tt-blue-500/25 dark:border-tt-blue-500/20 bg-tt-blue-500/[0.08] dark:bg-tt-blue-500/[0.06] px-1.5 py-0.5 text-[10px] tracking-widest text-tt-blue-500/50 dark:text-tt-blue-400/40 font-mono"
                 >
                   {binaryPackets[packetIndex % binaryPackets.length]}
                 </motion.span>
@@ -243,7 +243,7 @@ export function HeroSection() {
               times: [0, 0.1, 0.8, 1],
               ease: "easeInOut",
             }}
-            className="absolute font-mono text-[10px] text-tt-blue-500/20 dark:text-tt-blue-400/25 whitespace-nowrap select-none"
+            className="absolute font-mono text-[10px] text-tt-blue-500/40 dark:text-tt-blue-400/25 whitespace-nowrap select-none"
             style={{ top: log.top, right: log.right, left: log.left }}
           >
             {log.text}
@@ -258,7 +258,7 @@ export function HeroSection() {
           {/* Line from node 0 to node 4 */}
           <motion.line
             x1="10%" y1="25%" x2="6%" y2="45%"
-            className="stroke-tt-blue-500/[0.05] dark:stroke-tt-blue-500/[0.1]"
+            className="stroke-tt-blue-500/[0.15] dark:stroke-tt-blue-500/[0.1]"
             strokeWidth="1"
             initial={{ pathLength: 0 }}
             animate={{ pathLength: [0, 1, 1, 0] }}
@@ -267,7 +267,7 @@ export function HeroSection() {
           {/* Line from node 2 to node 5 */}
           <motion.line
             x1="82%" y1="30%" x2="94%" y2="50%"
-            className="stroke-tt-blue-500/[0.05] dark:stroke-tt-blue-500/[0.1]"
+            className="stroke-tt-blue-500/[0.15] dark:stroke-tt-blue-500/[0.1]"
             strokeWidth="1"
             initial={{ pathLength: 0 }}
             animate={{ pathLength: [0, 1, 1, 0] }}
@@ -276,7 +276,7 @@ export function HeroSection() {
           {/* Line from node 1 to node 3 — diagonal cross */}
           <motion.line
             x1="18%" y1="65%" x2="90%" y2="72%"
-            className="stroke-tt-cyan-500/[0.03] dark:stroke-tt-cyan-500/[0.06]"
+            className="stroke-tt-cyan-500/[0.12] dark:stroke-tt-cyan-500/[0.06]"
             strokeWidth="1"
             initial={{ pathLength: 0 }}
             animate={{ pathLength: [0, 1, 1, 0] }}
@@ -285,7 +285,7 @@ export function HeroSection() {
           {/* Line from node 0 to node 2 — top arc */}
           <motion.line
             x1="10%" y1="25%" x2="82%" y2="30%"
-            className="stroke-tt-blue-400/[0.02] dark:stroke-tt-blue-400/[0.05]"
+            className="stroke-tt-blue-400/[0.1] dark:stroke-tt-blue-400/[0.05]"
             strokeWidth="1"
             initial={{ pathLength: 0 }}
             animate={{ pathLength: [0, 1, 1, 0] }}
@@ -307,14 +307,14 @@ export function HeroSection() {
               delay: i * 0.8,
               ease: "easeInOut",
             }}
-            className="absolute w-2 h-2 rounded-full bg-tt-blue-500/20 dark:bg-tt-blue-400/30"
+            className="absolute w-2 h-2 rounded-full bg-tt-blue-500/40 dark:bg-tt-blue-400/30"
             style={{ left: node.x, top: node.y, transform: "translate(-50%, -50%)" }}
           >
             {/* Ping ring on each node */}
             <motion.div
               animate={{ scale: [1, 3], opacity: [0.3, 0] }}
               transition={{ duration: 2, repeat: Infinity, delay: i * 0.8 }}
-              className="absolute inset-0 rounded-full border border-tt-blue-500/10 dark:border-tt-blue-500/20"
+              className="absolute inset-0 rounded-full border border-tt-blue-500/25 dark:border-tt-blue-500/20"
             />
           </motion.div>
         ))}
@@ -336,7 +336,7 @@ export function HeroSection() {
               delay: p.delay,
               ease: "easeInOut",
             }}
-            className="absolute rounded-full bg-tt-blue-500/20 dark:bg-tt-blue-400/30"
+            className="absolute rounded-full bg-tt-blue-500/40 dark:bg-tt-blue-400/30"
             style={{ left: p.x, top: p.y, width: p.size, height: p.size }}
           />
         ))}
@@ -374,32 +374,32 @@ export function HeroSection() {
         <motion.div
           animate={{ rotate: 360, y: [0, -10, 0] }}
           transition={{ rotate: { duration: 30, repeat: Infinity, ease: "linear" }, y: { duration: 6, repeat: Infinity, ease: "easeInOut" } }}
-          className="absolute top-[12%] left-[8%] w-8 h-8 border border-tt-blue-500/10 dark:border-tt-blue-500/15 rounded-sm"
+          className="absolute top-[12%] left-[8%] w-8 h-8 border border-tt-blue-500/25 dark:border-tt-blue-500/15 rounded-sm"
         />
         <motion.div
           animate={{ scale: [1, 1.2, 1], opacity: [0.08, 0.15, 0.08] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[18%] right-[12%] w-12 h-12 border border-tt-cyan-500/10 dark:border-tt-cyan-500/15 rounded-full"
+          className="absolute top-[18%] right-[12%] w-12 h-12 border border-tt-cyan-500/25 dark:border-tt-cyan-500/15 rounded-full"
         />
         <motion.div
           animate={{ rotate: [45, 135, 45], y: [0, 12, 0] }}
           transition={{ rotate: { duration: 20, repeat: Infinity, ease: "linear" }, y: { duration: 7, repeat: Infinity, ease: "easeInOut" } }}
-          className="absolute bottom-[20%] left-[12%] w-6 h-6 border border-tt-blue-400/10 dark:border-tt-blue-400/15 rounded-sm"
+          className="absolute bottom-[20%] left-[12%] w-6 h-6 border border-tt-blue-400/25 dark:border-tt-blue-400/15 rounded-sm"
         />
         <motion.div
           animate={{ rotate: -360, opacity: [0.06, 0.12, 0.06] }}
           transition={{ rotate: { duration: 25, repeat: Infinity, ease: "linear" }, opacity: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
-          className="absolute bottom-[25%] right-[8%] w-10 h-10 border border-tt-cyan-400/10 dark:border-tt-cyan-400/12 rounded-md"
+          className="absolute bottom-[25%] right-[8%] w-10 h-10 border border-tt-cyan-400/25 dark:border-tt-cyan-400/12 rounded-md"
         />
         <motion.div
           animate={{ y: [0, -15, 0], opacity: [0.05, 0.12, 0.05] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[55%] left-[5%] font-mono text-lg text-tt-blue-500/10 dark:text-tt-blue-500/15 select-none"
+          className="absolute top-[55%] left-[5%] font-mono text-lg text-tt-blue-500/25 dark:text-tt-blue-500/15 select-none"
         >+</motion.div>
         <motion.div
           animate={{ y: [0, 12, 0], opacity: [0.05, 0.1, 0.05] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute top-[40%] right-[5%] font-mono text-lg text-tt-cyan-500/10 dark:text-tt-cyan-500/15 select-none"
+          className="absolute top-[40%] right-[5%] font-mono text-lg text-tt-cyan-500/25 dark:text-tt-cyan-500/15 select-none"
         >+</motion.div>
         {/* Hexagon shape — center-left */}
         <motion.div
@@ -427,7 +427,7 @@ export function HeroSection() {
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
             <motion.path
               d="M0 20 L0 0 L20 0"
-              className="stroke-tt-blue-500/15 dark:stroke-tt-blue-500/25"
+              className="stroke-tt-blue-500/30 dark:stroke-tt-blue-500/25"
               strokeWidth="1"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
@@ -445,7 +445,7 @@ export function HeroSection() {
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
             <motion.path
               d="M20 0 L40 0 L40 20"
-              className="stroke-tt-blue-500/15 dark:stroke-tt-blue-500/25"
+              className="stroke-tt-blue-500/30 dark:stroke-tt-blue-500/25"
               strokeWidth="1"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
@@ -463,7 +463,7 @@ export function HeroSection() {
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
             <motion.path
               d="M0 20 L0 40 L20 40"
-              className="stroke-tt-blue-500/15 dark:stroke-tt-blue-500/25"
+              className="stroke-tt-blue-500/30 dark:stroke-tt-blue-500/25"
               strokeWidth="1"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
@@ -481,7 +481,7 @@ export function HeroSection() {
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
             <motion.path
               d="M20 40 L40 40 L40 20"
-              className="stroke-tt-blue-500/15 dark:stroke-tt-blue-500/25"
+              className="stroke-tt-blue-500/30 dark:stroke-tt-blue-500/25"
               strokeWidth="1"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
@@ -495,7 +495,7 @@ export function HeroSection() {
       <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden hidden lg:block">
         <svg className="absolute inset-0 w-full h-full">
           {/* Path 1 - top curve */}
-          <circle r="2" className="fill-tt-blue-500/20 dark:fill-tt-blue-500/40">
+          <circle r="2.5" className="fill-tt-blue-500/40 dark:fill-tt-blue-500/40">
             <animateMotion
               dur="8s"
               repeatCount="indefinite"
@@ -503,7 +503,7 @@ export function HeroSection() {
             />
           </circle>
           {/* Path 2 - bottom curve */}
-          <circle r="2" className="fill-tt-cyan-500/15 dark:fill-tt-cyan-500/30">
+          <circle r="2.5" className="fill-tt-cyan-500/35 dark:fill-tt-cyan-500/30">
             <animateMotion
               dur="10s"
               begin="3s"
@@ -522,9 +522,9 @@ export function HeroSection() {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: [0, 1, 1, 0], x: 0 }}
             transition={{ opacity: { duration: 8, repeat: Infinity, delay: 1.5 + i * 3, times: [0, 0.05, 0.9, 1] }, x: { duration: 0.5, delay: 1.5 + i * 0.2 } }}
-            className="font-mono text-[11px] text-tt-blue-500/[0.08] dark:text-tt-blue-500/[0.12] whitespace-nowrap select-none"
+            className="font-mono text-[11px] text-tt-blue-500/[0.2] dark:text-tt-blue-500/[0.12] whitespace-nowrap select-none"
           >
-            <span className="text-tt-blue-500/[0.15] dark:text-tt-blue-500/[0.2] mr-3">{String(i + 1).padStart(2, "0")}</span>
+            <span className="text-tt-blue-500/[0.3] dark:text-tt-blue-500/[0.2] mr-3">{String(i + 1).padStart(2, "0")}</span>
             {line}
           </motion.div>
         ))}
@@ -536,13 +536,13 @@ export function HeroSection() {
           initial={{ scaleY: 0 }}
           animate={{ scaleY: 1 }}
           transition={{ duration: 1.2, delay: 1.0, ease: "easeOut" }}
-          className="h-full w-px bg-gradient-to-b from-transparent via-tt-blue-500/15 dark:via-tt-blue-500/25 to-transparent origin-top"
+          className="h-full w-px bg-gradient-to-b from-transparent via-tt-blue-500/30 dark:via-tt-blue-500/25 to-transparent origin-top"
         />
         {/* Traveling dot on the vertical line */}
         <motion.div
           animate={{ top: ["0%", "100%", "0%"] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute left-[-1.5px] w-1 h-4 bg-gradient-to-b from-transparent via-tt-blue-500/30 dark:via-tt-blue-500/50 to-transparent rounded-full"
+          className="absolute left-[-1.5px] w-1 h-4 bg-gradient-to-b from-transparent via-tt-blue-500/50 dark:via-tt-blue-500/50 to-transparent rounded-full"
         />
       </div>
 
@@ -576,11 +576,11 @@ export function HeroSection() {
             {/* Terminal body */}
             <div className="px-5 sm:px-8 py-8 sm:py-12 space-y-7 text-center relative">
               {/* Subtle inner glow at top */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-24 bg-tt-blue-500/3 dark:bg-tt-blue-500/5 rounded-full blur-[60px] pointer-events-none" />
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-24 bg-tt-blue-500/8 dark:bg-tt-blue-500/5 rounded-full blur-[60px] pointer-events-none" />
 
               {/* Status badge */}
               <motion.div variants={fadeUp} className="flex justify-center">
-                <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-tt-blue-500/5 dark:bg-tt-blue-900/40 border border-tt-blue-500/15 dark:border-tt-blue-500/20 rounded-md backdrop-blur-sm">
+                <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-tt-blue-500/10 dark:bg-tt-blue-900/40 border border-tt-blue-500/25 dark:border-tt-blue-500/20 rounded-md backdrop-blur-sm">
                   <span className="relative flex h-2 w-2">
                     <span className="absolute inline-flex h-full w-full rounded-full bg-tt-blue-400 opacity-75 animate-ping" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-tt-blue-500" />
@@ -684,7 +684,7 @@ export function HeroSection() {
           <span className="text-[10px] font-mono text-muted-foreground/40 uppercase tracking-[0.2em]">
             scroll
           </span>
-          <div className="w-5 h-8 rounded-full border border-tt-blue-500/20 dark:border-tt-blue-500/30 flex items-start justify-center p-1">
+          <div className="w-5 h-8 rounded-full border border-tt-blue-500/35 dark:border-tt-blue-500/30 flex items-start justify-center p-1">
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}

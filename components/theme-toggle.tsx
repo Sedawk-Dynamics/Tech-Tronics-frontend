@@ -4,9 +4,11 @@ import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 import { Moon, Sun } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useThemeSource } from "@/components/theme-provider"
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme()
+  const { setManual } = useThemeSource()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => setMounted(true), [])
@@ -14,6 +16,7 @@ export function ThemeToggle() {
   if (!mounted) return <div className="w-9 h-9" />
 
   const cycleTheme = () => {
+    setManual() // Mark as manual override so time-based auto doesn't overwrite
     setTheme(theme === "dark" ? "light" : "dark")
   }
 
