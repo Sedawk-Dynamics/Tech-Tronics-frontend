@@ -143,14 +143,14 @@ export function Navbar() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: -8, scale: 0.96 }}
                           transition={{ duration: 0.2, ease: "easeOut" }}
-                          className="absolute top-full left-0 mt-2 w-64 rounded-md overflow-hidden border border-primary/20 bg-background dark:bg-[hsl(215_25%_8%)] shadow-lg"
+                          className="absolute top-full left-0 mt-2 w-64 rounded-md overflow-hidden border border-primary/20 bg-background dark:bg-[hsl(220_25%_8%)] shadow-lg"
                           style={{
                             boxShadow:
                               "0 8px 30px hsl(var(--primary) / 0.1), 0 0 1px hsl(var(--primary) / 0.3)",
                           }}
                         >
                           {/* Terminal window header with 3 dots */}
-                          <div className="flex items-center gap-1.5 px-3 py-2 border-b border-primary/10 bg-card dark:bg-[hsl(215_25%_10%)]">
+                          <div className="flex items-center gap-1.5 px-3 py-2 border-b border-primary/10 bg-card dark:bg-[hsl(220_25%_10%)]">
                             <span className="w-2.5 h-2.5 rounded-full bg-[hsl(0_70%_50%)]" />
                             <span className="w-2.5 h-2.5 rounded-full bg-[hsl(45_90%_50%)]" />
                             <span className="w-2.5 h-2.5 rounded-full bg-[hsl(120_70%_45%)]" />

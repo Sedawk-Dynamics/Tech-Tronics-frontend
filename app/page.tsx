@@ -33,24 +33,36 @@ const VideoHero = dynamic(
   { ssr: false }
 )
 
+const SpinningEarth = dynamic(
+  () => import("@/components/spinning-earth").then((mod) => ({ default: mod.SpinningEarth })),
+  { ssr: false }
+)
+
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
-      {/* Fixed background layers */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="opacity-[0.06] dark:opacity-[0.08]">
+      {/* Background layers - fixed, stacked like Webelio */}
+      <div className="fixed inset-0 z-0 bg-background">
+        {/* Spinning Earth - deepest layer */}
+        <div className="absolute inset-0 opacity-[0.08] dark:opacity-[0.10]">
+          <SpinningEarth />
+        </div>
+        {/* Code rain */}
+        <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.07]">
           <CodeRain />
         </div>
       </div>
 
-      {/* Content */}
+      {/* Video background - on top of earth/rain */}
+      <VideoHero />
+
+      {/* Content - above all backgrounds */}
       <div className="relative z-10">
         <Navbar />
 
         <div className="pt-16">
-          {/* Hero with video background */}
+          {/* Hero with glowing orbs */}
           <div className="relative">
-            <VideoHero />
             <GlowingOrbs />
             <HeroSection />
           </div>

@@ -26,7 +26,7 @@ const steps = [
     title: "Design & Development",
     description:
       "We bring the plan to life with clean code, modern design, and rigorous quality assurance.",
-    color: "from-purple-500 to-pink-500",
+    color: "from-blue-500 to-cyan-500",
   },
   {
     icon: Rocket,
