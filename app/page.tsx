@@ -22,6 +22,8 @@ import { ClientReviewsSection } from "@/components/client-reviews-section"
 import { FaqSection } from "@/components/faq-section"
 import { NewsletterSection } from "@/components/newsletter-section"
 import { ConsultationSection } from "@/components/consultation-section"
+import { SectionDivider } from "@/components/section-divider"
+import { ScrollReveal } from "@/components/scroll-reveal"
 
 const CodeRain = dynamic(
   () => import("@/components/code-rain").then((mod) => ({ default: mod.CodeRain })),
@@ -41,19 +43,17 @@ const SpinningEarth = dynamic(
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
-      {/* Background layers - fixed, stacked like Webelio */}
+      {/* Background layers - fixed, stacked */}
       <div className="fixed inset-0 z-0 bg-background">
-        {/* Spinning Earth - deepest layer */}
         <div className="absolute inset-0 opacity-[0.08] dark:opacity-[0.10]">
           <SpinningEarth />
         </div>
-        {/* Code rain */}
         <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.07]">
           <CodeRain />
         </div>
       </div>
 
-      {/* Video background - on top of earth/rain */}
+      {/* Video background */}
       <VideoHero />
 
       {/* Content - above all backgrounds */}
@@ -68,22 +68,82 @@ export default function Home() {
           </div>
 
           <LogoTicker />
-          <AboutPreview />
-          <ServicesSection />
-          <StatsCounter />
-          <TechStackSection />
-          <SkillsVisualization />
-          <IndustrySection />
-          <WhyChooseUsSection />
-          <FeatureTracking />
-          <PortfolioSection />
-          <ClientReviewsSection />
-          <TestimonialsSection />
-          <ProcessSection />
-          <ConsultationSection />
-          <FaqSection />
-          <NewsletterSection />
-          <CtaSection />
+
+          <SectionDivider />
+
+          <ScrollReveal variant="fade-left">
+            <AboutPreview />
+          </ScrollReveal>
+
+          <SectionDivider />
+
+          <ScrollReveal variant="blur-in">
+            <ServicesSection />
+          </ScrollReveal>
+
+          <ScrollReveal variant="scale-up">
+            <StatsCounter />
+          </ScrollReveal>
+
+          <SectionDivider />
+
+          <ScrollReveal variant="fade-up">
+            <TechStackSection />
+          </ScrollReveal>
+
+          <ScrollReveal variant="fade-right">
+            <SkillsVisualization />
+          </ScrollReveal>
+
+          <SectionDivider />
+
+          <ScrollReveal variant="blur-in">
+            <IndustrySection />
+          </ScrollReveal>
+
+          <ScrollReveal variant="fade-left">
+            <WhyChooseUsSection />
+          </ScrollReveal>
+
+          <ScrollReveal variant="fade-up">
+            <FeatureTracking />
+          </ScrollReveal>
+
+          <SectionDivider />
+
+          <ScrollReveal variant="scale-up">
+            <PortfolioSection />
+          </ScrollReveal>
+
+          <ScrollReveal variant="fade-right">
+            <ClientReviewsSection />
+          </ScrollReveal>
+
+          <ScrollReveal variant="fade-left">
+            <TestimonialsSection />
+          </ScrollReveal>
+
+          <ScrollReveal variant="blur-in">
+            <ProcessSection />
+          </ScrollReveal>
+
+          <SectionDivider />
+
+          <ScrollReveal variant="scale-up">
+            <ConsultationSection />
+          </ScrollReveal>
+
+          <ScrollReveal variant="fade-up">
+            <FaqSection />
+          </ScrollReveal>
+
+          <ScrollReveal variant="blur-in">
+            <NewsletterSection />
+          </ScrollReveal>
+
+          <ScrollReveal variant="scale-up">
+            <CtaSection />
+          </ScrollReveal>
         </div>
 
         <Footer />

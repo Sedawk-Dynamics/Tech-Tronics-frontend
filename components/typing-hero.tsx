@@ -67,7 +67,7 @@ export function TypingHero() {
         transition={{ delay: 0.5, duration: 0.8 }}
         className="text-sm sm:text-base text-tt-blue-500/60 dark:text-tt-blue-400/50 font-medium uppercase tracking-[0.3em]"
       >
-        Your Startup Begins Here
+        Your Ideas Begins Here
       </motion.p>
     </div>
   )

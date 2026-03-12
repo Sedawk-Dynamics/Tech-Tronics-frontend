@@ -684,3 +684,62 @@ html.dark {
   83.4% { filter: brightness(1.03) hue-rotate(1deg); transform: translate(0, 1px); }
   83.5% { filter: none; transform: translate(0); }
 }
+
+/* ========== DOT GRID BACKGROUND ========== */
+.dot-grid-bg {
+  background-image: radial-gradient(circle, hsl(var(--primary) / 0.12) 1px, transparent 1px);
+  background-size: 32px 32px;
+  animation: dot-grid-drift 25s linear infinite;
+}
+.dark .dot-grid-bg {
+  background-image: radial-gradient(circle, hsl(var(--primary) / 0.18) 1px, transparent 1px);
+}
+@keyframes dot-grid-drift {
+  0% { background-position: 0px 0px; }
+  100% { background-position: 32px 32px; }
+}
+
+/* ========== ANIMATED GRADIENT BORDER ========== */
+.animated-gradient-border {
+  position: relative;
+  z-index: 0;
+}
+.animated-gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, hsl(var(--tt-blue-500)), hsl(var(--tt-cyan-500)), hsl(var(--tt-blue-400)), hsl(var(--tt-cyan-400)), hsl(var(--tt-blue-500)));
+  background-size: 300% 100%;
+  animation: gradient-border-flow 3s linear infinite;
+  z-index: -1;
+  opacity: 0.8;
+}
+.animated-gradient-border:hover::before {
+  opacity: 1;
+}
+@keyframes gradient-border-flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+/* ========== SHIMMER BADGE ========== */
+.shimmer-badge {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-badge::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.08), transparent);
+  animation: shimmer-sweep 4s ease-in-out infinite;
+}
+@keyframes shimmer-sweep {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 100%; }
+}
