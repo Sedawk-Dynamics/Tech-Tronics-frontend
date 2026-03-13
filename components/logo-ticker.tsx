@@ -27,7 +27,7 @@ function TickerRow({ direction = "left", speed = 30 }: { direction?: "left" | "r
   return (
     <div className="flex overflow-hidden">
       <motion.div
-        className="flex gap-8 items-center"
+        className="flex gap-6 items-center"
         animate={{
           x: direction === "left" ? [0, -1500] : [-1500, 0],
         }}
@@ -42,10 +42,10 @@ function TickerRow({ direction = "left", speed = 30 }: { direction?: "left" | "r
         {items.map((brand, i) => (
           <div
             key={`${brand.name}-${i}`}
-            className="flex items-center gap-3 px-6 py-3 bg-card/50 border border-border/50 rounded-xl whitespace-nowrap hover:border-tt-blue-500/30 transition-colors min-w-fit"
+            className="flex items-center gap-3 px-5 py-2.5 bg-card/50 border border-border/50 rounded-md whitespace-nowrap hover:border-tt-blue-500/30 hover:bg-card/80 transition-all duration-300 min-w-fit"
           >
-            <brand.icon className="w-5 h-5 text-tt-blue-500/70" />
-            <span className="text-sm font-medium text-muted-foreground">{brand.name}</span>
+            <brand.icon className="w-4 h-4 text-tt-blue-500/60" />
+            <span className="text-sm font-mono text-muted-foreground">{brand.name}</span>
           </div>
         ))}
       </motion.div>
@@ -64,8 +64,8 @@ export function LogoTicker() {
           viewport={{ once: true }}
           className="text-center mb-8"
         >
-          <p className="text-sm text-muted-foreground uppercase tracking-widest font-medium">
-            Technologies We Work With
+          <p className="text-sm text-muted-foreground uppercase tracking-widest font-mono">
+            // Technologies We Work With
           </p>
         </motion.div>
         <div className="space-y-4">

@@ -9,8 +9,6 @@ interface StatItem {
   value: number
   suffix: string
   label: string
-  gradient: string
-  iconBg: string
 }
 
 const stats: StatItem[] = [
@@ -19,32 +17,24 @@ const stats: StatItem[] = [
     value: 25,
     suffix: "+",
     label: "Years Experience",
-    gradient: "from-tt-blue-500 to-tt-blue-600",
-    iconBg: "from-tt-blue-500/15 to-tt-blue-600/15",
   },
   {
     icon: Briefcase,
     value: 500,
     suffix: "+",
     label: "Successful Projects",
-    gradient: "from-tt-cyan-500 to-tt-cyan-600",
-    iconBg: "from-tt-cyan-500/15 to-tt-cyan-600/15",
   },
   {
     icon: Users,
     value: 200,
     suffix: "+",
     label: "IT Professionals",
-    gradient: "from-violet-500 to-purple-500",
-    iconBg: "from-violet-500/15 to-purple-500/15",
   },
   {
     icon: CheckCircle,
     value: 100,
     suffix: "%",
     label: "Results Guaranteed",
-    gradient: "from-emerald-500 to-green-500",
-    iconBg: "from-emerald-500/15 to-green-500/15",
   },
 ]
 
@@ -91,21 +81,33 @@ function CountUp({ target, suffix }: { target: number; suffix: string }) {
 
 export function StatsCounter() {
   return (
-    <section className="py-20 px-4 sm:px-6 relative overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-tt-blue-600 via-tt-blue-500 to-tt-cyan-500" />
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,255,255,0.15),transparent)]" />
+    <section className="py-20 px-4 sm:px-6 relative overflow-hidden bg-tt-dark">
+      {/* Deep dark background */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-tt-dark via-tt-navy to-tt-dark" />
 
-      {/* Dot pattern */}
+      {/* Cyber-grid overlay */}
+      <div className="absolute inset-0 -z-[5] cyber-grid opacity-[0.08]" />
+
+      {/* Subtle matrix-style decorative lines */}
       <div
-        className="absolute inset-0 -z-[5] opacity-10"
+        className="absolute inset-0 -z-[4] pointer-events-none opacity-[0.03]"
         style={{
-          backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)",
-          backgroundSize: "30px 30px",
+          backgroundImage:
+            "repeating-linear-gradient(90deg, hsl(205 100% 55% / 0.15) 0px, transparent 1px, transparent 80px)",
+          backgroundSize: "80px 100%",
         }}
       />
 
-      <div className="max-w-7xl mx-auto">
+      {/* Faint horizontal scanline hint */}
+      <div
+        className="absolute inset-0 -z-[3] pointer-events-none opacity-[0.02]"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(0deg, transparent, transparent 3px, hsl(205 100% 55% / 0.1) 3px, hsl(205 100% 55% / 0.1) 4px)",
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {stats.map((stat, index) => (
             <motion.div
@@ -115,16 +117,21 @@ export function StatsCounter() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -4, scale: 1.02 }}
-              className="text-center p-6 sm:p-8 bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl hover:bg-white/15 transition-all duration-300"
+              className="text-center p-6 sm:p-8 terminal-card rounded-md border border-tt-blue-500/15 hover:border-tt-blue-500/40 transition-all duration-500 group"
             >
-              <div className={`inline-flex p-3.5 bg-white/15 rounded-2xl mb-5`}>
-                <stat.icon className="w-7 h-7 text-white" />
+              {/* Icon in a dark bordered container */}
+              <div className="inline-flex p-3.5 bg-tt-blue-500/5 border border-tt-blue-500/25 rounded-md mb-5 group-hover:border-tt-blue-500/50 group-hover:bg-tt-blue-500/10 transition-all duration-500">
+                <stat.icon className="w-7 h-7 text-tt-blue-500" />
               </div>
-              <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 tracking-tight">
+
+              {/* Number: green with glow, monospace */}
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 tracking-tight font-mono text-tt-blue-400 glow-text-primary">
                 <CountUp target={stat.value} suffix={stat.suffix} />
               </div>
-              <div className="text-sm text-white/70 font-medium uppercase tracking-wider">
-                {stat.label}
+
+              {/* Label: muted green/gray, monospace, with // prefix */}
+              <div className="text-sm text-muted-foreground font-medium font-mono uppercase tracking-wider group-hover:text-tt-blue-500/80 transition-colors duration-300">
+                <span className="text-tt-blue-500/40">// </span>{stat.label}
               </div>
             </motion.div>
           ))}

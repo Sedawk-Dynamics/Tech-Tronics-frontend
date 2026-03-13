@@ -69,12 +69,12 @@ export function CodeRain() {
 
           if (isDark) {
             color = isHead
-              ? `rgba(139, 92, 246, ${item.opacity * 1.0})`
-              : `rgba(99, 102, 241, ${item.opacity * 0.6})`
+              ? `rgba(56, 152, 236, ${item.opacity * 1.0})`
+              : `rgba(34, 130, 210, ${item.opacity * 0.6})`
           } else {
             color = isHead
-              ? `rgba(2, 119, 189, ${item.opacity * 0.9})`
-              : `rgba(0, 151, 167, ${item.opacity * 0.5})`
+              ? `rgba(30, 120, 200, ${item.opacity * 0.9})`
+              : `rgba(34, 130, 210, ${item.opacity * 0.5})`
           }
 
           ctx.fillStyle = color

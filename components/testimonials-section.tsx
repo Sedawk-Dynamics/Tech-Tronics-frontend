@@ -47,7 +47,10 @@ export function TestimonialsSection() {
   const prev = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length)
 
   return (
-    <section className="py-20 px-4 sm:px-6 bg-secondary/30">
+    <section className="py-20 px-4 sm:px-6 bg-secondary/30 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 cyber-grid opacity-20 -z-10" />
+
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -56,14 +59,12 @@ export function TestimonialsSection() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-tt-cyan-500/10 border border-tt-cyan-500/20 rounded-full mb-4">
-            <span className="text-sm text-tt-cyan-500 font-medium">Testimonials</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-tt-cyan-500/10 border border-tt-cyan-500/20 rounded-md mb-4">
+            <span className="text-sm text-tt-cyan-500 font-mono">cat reviews.log</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             What Our Clients{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-tt-cyan-500 to-tt-blue-500">
-              Say
-            </span>
+            <span className="gradient-text">Say</span>
           </h2>
         </motion.div>
 
@@ -75,9 +76,12 @@ export function TestimonialsSection() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.4 }}
-              className="bg-card border border-border rounded-2xl p-8 sm:p-10 text-center"
+              className="bg-card border border-tt-blue-500/15 rounded-lg p-8 sm:p-10 text-center relative"
             >
-              <Quote className="w-10 h-10 text-tt-blue-500/30 mx-auto mb-6" />
+              {/* Top glow line */}
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tt-blue-500/40 to-transparent" />
+
+              <Quote className="w-10 h-10 text-tt-blue-500/20 mx-auto mb-6" />
 
               <p className="text-lg sm:text-xl text-foreground leading-relaxed mb-8 italic">
                 &ldquo;{testimonials[current].content}&rdquo;
@@ -85,11 +89,11 @@ export function TestimonialsSection() {
 
               <div className="flex justify-center gap-1 mb-4">
                 {Array.from({ length: testimonials[current].rating }).map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-tt-cyan-500 fill-tt-cyan-500" />
+                  <Star key={i} className="w-5 h-5 text-tt-cyan-400 fill-tt-cyan-400" />
                 ))}
               </div>
 
-              <div className="w-16 h-16 mx-auto rounded-full overflow-hidden mb-3 border-2 border-tt-blue-500/30 shadow-lg">
+              <div className="w-16 h-16 mx-auto rounded-md overflow-hidden mb-3 border border-tt-blue-500/20">
                 <Image
                   src={testimonials[current].image}
                   alt={testimonials[current].name}
@@ -102,8 +106,8 @@ export function TestimonialsSection() {
               <h4 className="font-semibold text-foreground text-lg">
                 {testimonials[current].name}
               </h4>
-              <p className="text-sm text-muted-foreground">
-                {testimonials[current].role}
+              <p className="text-sm text-muted-foreground font-mono">
+                // {testimonials[current].role}
               </p>
             </motion.div>
           </AnimatePresence>
@@ -112,7 +116,7 @@ export function TestimonialsSection() {
           <div className="flex justify-center items-center gap-4 mt-8">
             <button
               onClick={prev}
-              className="p-2 bg-secondary hover:bg-tt-blue-500 hover:text-white rounded-full transition-all"
+              className="p-2.5 bg-secondary hover:bg-tt-blue-500 hover:text-background rounded-md border border-border hover:border-tt-blue-500 hover:shadow-lg hover:shadow-tt-blue-500/20 transition-all"
               aria-label="Previous testimonial"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -122,10 +126,10 @@ export function TestimonialsSection() {
                 <button
                   key={index}
                   onClick={() => setCurrent(index)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all ${
+                  className={`h-2 rounded-sm transition-all duration-300 ${
                     index === current
-                      ? "bg-tt-blue-500 w-8"
-                      : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                      ? "bg-tt-blue-500 w-8 shadow-lg shadow-tt-blue-500/30"
+                      : "bg-muted-foreground/30 hover:bg-muted-foreground/50 w-2"
                   }`}
                   aria-label={`Go to testimonial ${index + 1}`}
                 />
@@ -133,7 +137,7 @@ export function TestimonialsSection() {
             </div>
             <button
               onClick={next}
-              className="p-2 bg-secondary hover:bg-tt-blue-500 hover:text-white rounded-full transition-all"
+              className="p-2.5 bg-secondary hover:bg-tt-blue-500 hover:text-background rounded-md border border-border hover:border-tt-blue-500 hover:shadow-lg hover:shadow-tt-blue-500/20 transition-all"
               aria-label="Next testimonial"
             >
               <ChevronRight className="w-5 h-5" />

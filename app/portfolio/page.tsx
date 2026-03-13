@@ -26,29 +26,18 @@ export default function PortfolioPage() {
         {/* Hero Banner */}
         <section className="py-20 px-4 sm:px-6 relative overflow-hidden">
           <FloatingParticles count={12} />
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-tt-blue-500/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-tt-cyan-500/10 rounded-full blur-3xl" />
-          </div>
+          <div className="absolute inset-0 cyber-grid opacity-20 -z-10" />
 
           <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-tt-blue-500/10 border border-tt-blue-500/20 rounded-full mb-6">
-                <span className="text-sm text-tt-blue-500 font-medium">Our Portfolio</span>
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-tt-blue-500/5 border border-tt-blue-500/15 rounded-md mb-6">
+                <span className="text-sm text-tt-blue-500 font-mono">ls /projects/ --recent</span>
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-                Our Recent{" "}
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-tt-blue-500 to-tt-cyan-500">
-                  Projects
-                </span>
+                Our Recent <span className="gradient-text">Projects</span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Explore our portfolio of innovative projects across AI, machine learning,
-                and software development.
+                Explore our portfolio of innovative projects across AI, machine learning, and software development.
               </p>
             </motion.div>
           </div>
@@ -65,10 +54,10 @@ export default function PortfolioPage() {
                   onClick={() => setActiveCategory(cat)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`px-5 py-2.5 text-sm font-medium rounded-xl transition-all duration-300 ${
+                  className={`px-5 py-2.5 text-sm font-mono font-medium rounded-md transition-all duration-300 ${
                     activeCategory === cat
-                      ? "bg-tt-blue-500 text-white shadow-lg shadow-tt-blue-500/25"
-                      : "bg-secondary text-muted-foreground hover:bg-secondary/80 hover:text-foreground"
+                      ? "bg-tt-blue-500 text-background shadow-lg shadow-tt-blue-500/25"
+                      : "bg-secondary text-muted-foreground hover:bg-secondary/80 hover:text-foreground border border-border"
                   }`}
                 >
                   {cat}
@@ -76,7 +65,7 @@ export default function PortfolioPage() {
               ))}
             </div>
 
-            {/* Projects Grid - Enhanced with Images */}
+            {/* Projects Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               <AnimatePresence mode="popLayout">
                 {filtered.map((project, index) => (
@@ -87,49 +76,33 @@ export default function PortfolioPage() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.4, delay: index * 0.08 }}
-                    whileHover={{ y: -8 }}
-                    className="group relative overflow-hidden bg-card border border-border rounded-2xl hover:border-tt-blue-500/50 hover:shadow-2xl hover:shadow-tt-blue-500/10 transition-all duration-500"
+                    whileHover={{ y: -6 }}
+                    className="group relative overflow-hidden bg-card border border-border rounded-lg hover:border-tt-blue-500/30 hover:shadow-lg hover:shadow-tt-blue-500/8 transition-all duration-500"
                   >
-                    {/* Project Image */}
                     <div className="h-56 relative overflow-hidden">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-700"
-                        unoptimized
-                      />
-                      <div className={`absolute inset-0 bg-gradient-to-t ${project.color} opacity-40 group-hover:opacity-20 transition-opacity duration-500`} />
+                      <Image src={project.image} alt={project.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" unoptimized />
+                      <div className={`absolute inset-0 bg-gradient-to-t ${project.color} opacity-30 group-hover:opacity-15 transition-opacity duration-500`} />
 
-                      {/* Featured badge */}
                       {index === 0 && (
                         <div className="absolute top-3 left-3 z-10">
-                          <span className="px-3 py-1 bg-white/90 text-xs font-bold text-gray-900 rounded-full">
-                            Featured
-                          </span>
+                          <span className="px-3 py-1 bg-tt-cyan-500 text-background text-xs font-mono font-bold rounded-sm shadow-lg">Featured</span>
                         </div>
                       )}
 
                       <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-                        <div className="p-2 bg-white/20 backdrop-blur-sm rounded-lg">
+                        <div className="p-2 bg-white/20 backdrop-blur-sm rounded-md border border-white/10">
                           <ExternalLink className="w-4 h-4 text-white" />
                         </div>
                       </div>
 
                       <div className="absolute bottom-3 left-3 z-10">
-                        <span className="px-3 py-1 bg-black/50 backdrop-blur-sm text-xs font-medium text-white rounded-full">
-                          {project.category}
-                        </span>
+                        <span className="px-3 py-1 bg-black/40 backdrop-blur-sm text-xs font-mono text-white rounded-sm border border-white/10">{project.category}</span>
                       </div>
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-xl font-semibold text-foreground mt-1 mb-2 group-hover:text-tt-blue-500 transition-colors">
-                        {project.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {project.description}
-                      </p>
+                      <h3 className="text-xl font-semibold text-foreground mt-1 mb-2 group-hover:text-tt-blue-500 transition-colors">{project.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{project.description}</p>
                     </div>
                   </motion.div>
                 ))}

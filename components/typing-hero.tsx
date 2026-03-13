@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { motion } from "framer-motion"
 
 const phrases = [
   "Next-Gen Technology",
@@ -43,16 +44,31 @@ export function TypingHero() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-        <span className="text-foreground">Your </span>
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-tt-blue-400 via-tt-cyan-400 to-tt-cyan-500">
+      <motion.h1
+        className="text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <span className="text-foreground">We Build </span>
+        <br />
+        <span className="bg-clip-text text-transparent bg-gradient-to-r from-tt-blue-400 via-tt-blue-500 to-tt-cyan-500">
           {displayText}
+          <motion.span
+            className="inline-block w-1 h-10 sm:h-14 lg:h-16 bg-gradient-to-b from-tt-blue-500 to-tt-cyan-500 ml-1 align-middle"
+            animate={{ opacity: [0, 1, 0] }}
+            transition={{ duration: 1, repeat: Infinity }}
+          />
         </span>
-        <span className="animate-pulse text-tt-blue-500">|</span>
-      </h1>
-      <p className="text-lg sm:text-xl text-foreground/80 font-medium">
-        Startup Begins Here
-      </p>
+      </motion.h1>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.8 }}
+        className="text-sm sm:text-base text-tt-blue-500/60 dark:text-tt-blue-400/50 font-medium uppercase tracking-[0.3em]"
+      >
+        Your Ideas Begins Here
+      </motion.p>
     </div>
   )
 }

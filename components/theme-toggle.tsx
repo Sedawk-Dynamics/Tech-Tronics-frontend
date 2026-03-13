@@ -4,9 +4,11 @@ import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 import { Moon, Sun } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useThemeSource } from "@/components/theme-provider"
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme()
+  const { setManual } = useThemeSource()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => setMounted(true), [])
@@ -14,6 +16,7 @@ export function ThemeToggle() {
   if (!mounted) return <div className="w-9 h-9" />
 
   const cycleTheme = () => {
+    setManual() // Mark as manual override so time-based auto doesn't overwrite
     setTheme(theme === "dark" ? "light" : "dark")
   }
 
@@ -26,7 +29,7 @@ export function ThemeToggle() {
   return (
     <motion.button
       onClick={cycleTheme}
-      className="relative p-2.5 rounded-xl glass hover:glow-primary"
+      className="relative p-2.5 rounded-md border border-border bg-card/50 hover:border-tt-blue-500/40 hover:shadow-md hover:shadow-tt-blue-500/10 transition-all duration-300"
       whileHover={{ scale: 1.08 }}
       whileTap={{ scale: 0.92 }}
       aria-label={`Current theme: ${theme}. Click to change.`}
@@ -38,7 +41,7 @@ export function ThemeToggle() {
           </motion.div>
         ) : (
           <motion.div key="sun" {...iconVariants} transition={{ duration: 0.2 }}>
-            <Sun className="w-[18px] h-[18px] text-tt-cyan-500" />
+            <Sun className="w-[18px] h-[18px] text-tt-blue-500" />
           </motion.div>
         )}
       </AnimatePresence>

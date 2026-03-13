@@ -48,18 +48,17 @@ export function FeatureTracking() {
       {/* Animated background spine */}
       <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 hidden lg:block">
         <motion.div
-          className="w-full h-full bg-gradient-to-b from-transparent via-tt-blue-500/30 to-transparent"
+          className="w-full h-full bg-gradient-to-b from-transparent via-tt-blue-500/20 to-transparent"
           initial={{ scaleY: 0 }}
           whileInView={{ scaleY: 1 }}
           transition={{ duration: 2 }}
           viewport={{ once: true }}
           style={{ transformOrigin: "top" }}
         />
-        {/* Flowing particles on spine */}
         {[0, 1, 2, 3, 4].map((i) => (
           <motion.div
             key={i}
-            className="absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-tt-blue-500/60"
+            className="absolute left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-tt-blue-500/50 shadow-sm shadow-tt-blue-500/30"
             animate={{ y: [0, 800], opacity: [0, 1, 0] }}
             transition={{
               duration: 4,
@@ -81,9 +80,7 @@ export function FeatureTracking() {
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             Built for{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-tt-blue-500 to-tt-cyan-500">
-              Enterprise Scale
-            </span>
+            <span className="gradient-text">Enterprise Scale</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Our technology stack is designed to handle the most demanding workloads with reliability and speed.
@@ -108,22 +105,22 @@ export function FeatureTracking() {
                 {/* Connection node on spine */}
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 hidden lg:block">
                   <motion.div
-                    className="w-4 h-4 rounded-full bg-tt-blue-500 border-2 border-background"
+                    className="w-3 h-3 rounded-full bg-tt-blue-500 border-2 border-background shadow-md shadow-tt-blue-500/30"
                     animate={{ scale: [1, 1.3, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   />
                   <motion.div
-                    className="absolute inset-0 w-4 h-4 rounded-full bg-tt-blue-500/30"
-                    animate={{ scale: [1, 2, 1], opacity: [0.5, 0, 0.5] }}
+                    className="absolute inset-0 w-3 h-3 rounded-full bg-tt-blue-500/20"
+                    animate={{ scale: [1, 2.5, 1], opacity: [0.5, 0, 0.5] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   />
                 </div>
 
                 {/* Card */}
                 <div className={`${isLeft ? "lg:col-start-1" : "lg:col-start-2"} group`}>
-                  <div className="p-6 bg-card border border-border rounded-xl hover:border-tt-blue-500/40 hover:shadow-lg hover:shadow-tt-blue-500/5 transition-all duration-300">
+                  <div className="p-6 bg-card border border-border rounded-lg hover:border-tt-blue-500/30 hover:shadow-lg hover:shadow-tt-blue-500/8 transition-all duration-500">
                     <div className="flex items-start gap-4">
-                      <div className="p-3 bg-gradient-to-br from-tt-blue-500/10 to-tt-cyan-500/10 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                      <div className="p-3 bg-tt-blue-500/10 border border-tt-blue-500/15 rounded-md group-hover:shadow-lg group-hover:shadow-tt-blue-500/10 transition-all duration-300">
                         <feature.icon className="w-6 h-6 text-tt-blue-500" />
                       </div>
                       <div className="flex-1">
@@ -131,9 +128,9 @@ export function FeatureTracking() {
                           {feature.title}
                         </h3>
                         <p className="text-sm text-muted-foreground mb-3">{feature.description}</p>
-                        <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-tt-blue-500/10 rounded-full">
-                          <div className="w-1.5 h-1.5 rounded-full bg-tt-cyan-500 animate-pulse" />
-                          <span className="text-xs font-medium text-tt-blue-500">{feature.stats}</span>
+                        <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-tt-blue-500/5 border border-tt-blue-500/15 rounded-md">
+                          <div className="w-1.5 h-1.5 rounded-full bg-tt-blue-500 animate-pulse" />
+                          <span className="text-xs font-mono font-medium text-tt-blue-500">{feature.stats}</span>
                         </div>
                       </div>
                     </div>
@@ -153,7 +150,7 @@ export function FeatureTracking() {
                       {[...Array(5)].map((_, i) => (
                         <motion.div
                           key={i}
-                          className="w-3 bg-gradient-to-t from-tt-blue-500/30 to-tt-cyan-500/60 rounded-full"
+                          className="w-2 bg-gradient-to-t from-tt-blue-500/20 to-tt-blue-500/50 rounded-sm"
                           initial={{ height: 0 }}
                           whileInView={{ height: 20 + Math.random() * 40 }}
                           transition={{ duration: 0.8, delay: 0.3 + i * 0.1 }}

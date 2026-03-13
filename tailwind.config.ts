@@ -12,6 +12,9 @@ const config: Config = {
       screens: {
         xs: "475px",
       },
+      fontFamily: {
+        mono: ["var(--font-mono)", "Courier New", "monospace"],
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -46,7 +49,6 @@ const config: Config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        // Theme-aware palette (blue/cyan in light, purple/indigo in dark)
         tt: {
           blue: {
             DEFAULT: "hsl(var(--tt-blue-400) / <alpha-value>)",
@@ -103,8 +105,16 @@ const config: Config = {
           "50%": { transform: "translateY(-10px)" },
         },
         "glow-pulse": {
-          "0%, 100%": { boxShadow: "0 0 20px hsl(var(--tt-blue-500) / 0.2)" },
-          "50%": { boxShadow: "0 0 40px hsl(var(--tt-blue-500) / 0.4)" },
+          "0%, 100%": { boxShadow: "0 0 15px hsl(var(--tt-blue-500) / 0.2)" },
+          "50%": { boxShadow: "0 0 30px hsl(var(--tt-blue-500) / 0.4)" },
+        },
+        "spin-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        "pulse-glow": {
+          "0%, 100%": { opacity: "0.4", transform: "scale(1)" },
+          "50%": { opacity: "0.8", transform: "scale(1.05)" },
         },
       },
       animation: {
@@ -114,6 +124,8 @@ const config: Config = {
         shimmer: "shimmer 2s linear infinite",
         float: "float 6s ease-in-out infinite",
         "glow-pulse": "glow-pulse 2s ease-in-out infinite",
+        "spin-slow": "spin-slow 20s linear infinite",
+        "pulse-glow": "pulse-glow 3s ease-in-out infinite",
       },
     },
   },
