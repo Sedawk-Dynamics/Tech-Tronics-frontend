@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from "framer-motion"
+import { motion, useScroll, useTransform, useMotionValue, useSpring, useInView, AnimatePresence } from "framer-motion"
 import { useRef, useMemo, useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 import { ArrowRight, Sparkles, Shield, Clock, Users, Zap, Globe, Cpu, Cloud, Code, Smartphone, Database } from "lucide-react"
@@ -127,6 +127,10 @@ export function HeroSection() {
 
   const [showBurst, setShowBurst] = useState(true)
 
+  // ~40 looping decorations live in this section. Unmount them (and pause CSS
+  // animations) once the hero scrolls out of view so they stop costing frames.
+  const heroInView = useInView(sectionRef)
+
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     const rect = sectionRef.current?.getBoundingClientRect()
     if (!rect) return
@@ -152,7 +156,9 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className="relative flex flex-col items-center justify-center min-h-[92vh] px-4 sm:px-6 overflow-hidden">
+    <section ref={sectionRef} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className="relative flex flex-col items-center justify-center min-h-[92vh] px-4 sm:px-6 overflow-hidden" data-paused={heroInView ? undefined : ""}>
+      {heroInView && (
+      <>
       {/* Animated dot grid background */}
       <div className="absolute inset-0 -z-20 dot-grid-bg opacity-[0.4] dark:opacity-[0.3] pointer-events-none" />
 
@@ -281,22 +287,22 @@ export function HeroSection() {
         <motion.div
           animate={{ x: [0, 30, -20, 0], y: [0, -15, 10, 0] }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-tt-blue-500/25 dark:bg-tt-blue-500/15 rounded-full blur-[180px]"
+          className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-[radial-gradient(closest-side,hsl(var(--tt-blue-500)/0.25),transparent)] dark:bg-[radial-gradient(closest-side,hsl(var(--tt-blue-500)/0.15),transparent)]"
         />
         <motion.div
           animate={{ x: [0, -25, 15, 0], y: [0, 20, -10, 0] }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[-5%] left-[20%] w-[500px] h-[350px] bg-tt-cyan-500/15 dark:bg-tt-cyan-500/8 rounded-full blur-[140px]"
+          className="absolute bottom-[-5%] left-[20%] w-[500px] h-[350px] bg-[radial-gradient(closest-side,hsl(var(--tt-cyan-500)/0.15),transparent)] dark:bg-[radial-gradient(closest-side,hsl(var(--tt-cyan-500)/0.08),transparent)]"
         />
         <motion.div
           animate={{ x: [0, 20, -30, 0], y: [0, -25, 15, 0] }}
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[30%] right-[-5%] w-[400px] h-[400px] bg-tt-blue-400/12 dark:bg-tt-blue-400/6 rounded-full blur-[120px]"
+          className="absolute top-[30%] right-[-5%] w-[400px] h-[400px] bg-[radial-gradient(closest-side,hsl(var(--tt-blue-400)/0.12),transparent)] dark:bg-[radial-gradient(closest-side,hsl(var(--tt-blue-400)/0.06),transparent)]"
         />
         <motion.div
           animate={{ opacity: [0.05, 0.12, 0.05], scale: [0.9, 1.1, 0.9] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-tt-blue-500/15 dark:bg-tt-blue-500/10 rounded-full blur-[200px]"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[radial-gradient(closest-side,hsl(var(--tt-blue-500)/0.15),transparent)] dark:bg-[radial-gradient(closest-side,hsl(var(--tt-blue-500)/0.1),transparent)]"
         />
       </motion.div>
 
@@ -496,6 +502,9 @@ export function HeroSection() {
         </motion.svg>
       </div>
 
+      </>
+      )}
+
       {/* Main content - with scroll parallax + 3D tilt */}
       <motion.div
         className="max-w-4xl w-full mx-auto relative z-10"
@@ -532,13 +541,9 @@ export function HeroSection() {
             className="text-muted-foreground max-w-xl mx-auto text-base sm:text-lg leading-relaxed"
           >
             Crafting impactful, scalable, and future-ready digital solutions across{" "}
-            <motion.span
-              animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-              className="bg-clip-text text-transparent bg-[length:200%_auto] bg-gradient-to-r from-tt-blue-500 via-tt-cyan-500 to-tt-blue-500 font-medium"
-            >
+            <span className="bg-clip-text text-transparent animate-text-shimmer bg-gradient-to-r from-tt-blue-500 via-tt-cyan-500 to-tt-blue-500 font-medium">
               Web, Mobile, IoT, AI/ML, and Cloud
-            </motion.span>{" "}
+            </span>{" "}
             for businesses worldwide.
           </motion.p>
 
@@ -548,14 +553,7 @@ export function HeroSection() {
             className="relative flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
           >
             {/* Pulsing glow behind CTA area */}
-            <motion.div
-              animate={{
-                scale: [1, 1.15, 1],
-                opacity: [0.08, 0.2, 0.08],
-              }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute inset-0 -z-10 bg-gradient-to-r from-tt-blue-500/20 via-tt-cyan-500/15 to-tt-blue-500/20 rounded-full blur-[40px] scale-150"
-            />
+            <div className="hero-cta-glow absolute inset-0 -z-10 pointer-events-none bg-[radial-gradient(closest-side,hsl(var(--tt-blue-500)/0.35),hsl(var(--tt-cyan-500)/0.15),transparent)]" />
             <div className="animated-gradient-border rounded-lg">
               <Link
                 href="/contact"
@@ -610,6 +608,7 @@ export function HeroSection() {
       </motion.div>
 
       {/* Scroll indicator */}
+      {heroInView && (
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -633,6 +632,7 @@ export function HeroSection() {
           </div>
         </motion.div>
       </motion.div>
+      )}
     </section>
   )
 }

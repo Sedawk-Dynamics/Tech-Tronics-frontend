@@ -1,7 +1,7 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
+import { useState, useEffect, useRef } from "react"
+import { motion, useInView } from "framer-motion"
 
 interface Particle {
   id: number
@@ -62,10 +62,16 @@ export function FloatingParticles({ count = 20 }: { count?: number }) {
 }
 
 export function GlowingOrbs() {
+  // Stop the looping orbs once they're scrolled out of view
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref)
+
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div ref={ref} className="absolute inset-0 overflow-hidden pointer-events-none">
+      {inView && (
+      <>
       <motion.div
-        className="absolute w-72 h-72 rounded-full bg-tt-blue-500/10 dark:bg-tt-blue-500/20 blur-[80px]"
+        className="absolute w-72 h-72 bg-[radial-gradient(closest-side,hsl(var(--tt-blue-500)/0.1),transparent)] dark:bg-[radial-gradient(closest-side,hsl(var(--tt-blue-500)/0.2),transparent)]"
         animate={{
           x: [0, 100, -50, 0],
           y: [0, -50, 50, 0],
@@ -75,7 +81,7 @@ export function GlowingOrbs() {
         style={{ top: "10%", left: "10%" }}
       />
       <motion.div
-        className="absolute w-96 h-96 rounded-full bg-tt-cyan-500/8 dark:bg-tt-cyan-500/15 blur-[100px]"
+        className="absolute w-96 h-96 bg-[radial-gradient(closest-side,hsl(var(--tt-cyan-500)/0.08),transparent)] dark:bg-[radial-gradient(closest-side,hsl(var(--tt-cyan-500)/0.15),transparent)]"
         animate={{
           x: [0, -80, 60, 0],
           y: [0, 60, -40, 0],
@@ -85,7 +91,7 @@ export function GlowingOrbs() {
         style={{ bottom: "10%", right: "10%" }}
       />
       <motion.div
-        className="absolute w-64 h-64 rounded-full bg-tt-cyan-400/5 dark:bg-tt-cyan-400/10 blur-[90px]"
+        className="absolute w-64 h-64 bg-[radial-gradient(closest-side,hsl(var(--tt-cyan-400)/0.05),transparent)] dark:bg-[radial-gradient(closest-side,hsl(var(--tt-cyan-400)/0.1),transparent)]"
         animate={{
           x: [0, 50, -50, 0],
           y: [0, -70, 30, 0],
@@ -93,6 +99,8 @@ export function GlowingOrbs() {
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 5 }}
         style={{ top: "40%", left: "50%" }}
       />
+      </>
+      )}
     </div>
   )
 }

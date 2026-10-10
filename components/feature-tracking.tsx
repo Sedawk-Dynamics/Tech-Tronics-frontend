@@ -1,6 +1,7 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { useRef } from "react"
+import { motion, useInView } from "framer-motion"
 import { Cpu, Globe, Shield, Zap, BarChart3, Layers } from "lucide-react"
 
 const features = [
@@ -43,8 +44,11 @@ const features = [
 ]
 
 export function FeatureTracking() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const inView = useInView(sectionRef)
+
   return (
-    <section className="py-20 px-4 sm:px-6 relative overflow-hidden">
+    <section ref={sectionRef} data-paused={inView ? undefined : ""} className="py-20 px-4 sm:px-6 relative overflow-hidden">
       {/* Animated background spine */}
       <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 hidden lg:block">
         <motion.div
@@ -56,16 +60,10 @@ export function FeatureTracking() {
           style={{ transformOrigin: "top" }}
         />
         {[0, 1, 2, 3, 4].map((i) => (
-          <motion.div
+          <div
             key={i}
-            className="absolute left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-tt-blue-500/50 shadow-sm shadow-tt-blue-500/30"
-            animate={{ y: [0, 800], opacity: [0, 1, 0] }}
-            transition={{
-              duration: 4,
-              delay: i * 0.8,
-              repeat: Infinity,
-              ease: "linear",
-            }}
+            className="feature-spine-dot absolute left-1/2 w-1.5 h-1.5 rounded-full bg-tt-blue-500/50 shadow-sm shadow-tt-blue-500/30"
+            style={{ animationDelay: `${i * 0.8}s` }}
           />
         ))}
       </div>
@@ -104,16 +102,8 @@ export function FeatureTracking() {
               >
                 {/* Connection node on spine */}
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 hidden lg:block">
-                  <motion.div
-                    className="w-3 h-3 rounded-full bg-tt-blue-500 border-2 border-background shadow-md shadow-tt-blue-500/30"
-                    animate={{ scale: [1, 1.3, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  />
-                  <motion.div
-                    className="absolute inset-0 w-3 h-3 rounded-full bg-tt-blue-500/20"
-                    animate={{ scale: [1, 2.5, 1], opacity: [0.5, 0, 0.5] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  />
+                  <div className="feature-node-core w-3 h-3 rounded-full bg-tt-blue-500 border-2 border-background shadow-md shadow-tt-blue-500/30" />
+                  <div className="feature-node-halo absolute inset-0 w-3 h-3 rounded-full bg-tt-blue-500/20" />
                 </div>
 
                 {/* Card */}

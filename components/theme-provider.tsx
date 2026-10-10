@@ -1,6 +1,7 @@
 "use client"
 
 import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes"
+import { MotionConfig } from "framer-motion"
 import { createContext, useContext, useEffect, type ReactNode } from "react"
 
 const ThemeSourceContext = createContext<{
@@ -52,7 +53,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     >
       <ThemeSourceContext.Provider value={themeSourceValue}>
         <TimeBasedThemeSync />
-        {children}
+        <MotionConfig reducedMotion="user">{children}</MotionConfig>
       </ThemeSourceContext.Provider>
     </NextThemesProvider>
   )

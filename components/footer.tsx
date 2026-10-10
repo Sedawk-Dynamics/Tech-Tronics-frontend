@@ -15,6 +15,7 @@ import {
   Linkedin,
   Dribbble,
 } from "lucide-react"
+import { company, legalLinks } from "@/lib/company"
 
 const footerSections = [
   {
@@ -40,6 +41,11 @@ const footerSections = [
       { label: "Contact", href: "/contact" },
     ],
   },
+  {
+    id: "legal",
+    title: "Legal",
+    items: legalLinks,
+  },
 ]
 
 const socialLinks = [
@@ -63,9 +69,9 @@ export function Footer() {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Desktop Footer */}
         <div className="hidden md:block">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-8">
             {/* Company Info */}
-            <div className="lg:col-span-2">
+            <div className="md:col-span-3 lg:col-span-2">
               <div className="flex items-center mb-4 relative">
                 {/* Subtle green glow behind logo */}
                 <div className="absolute -inset-2 bg-tt-blue-500/10 rounded-md blur-xl opacity-50" />
@@ -93,15 +99,15 @@ export function Footer() {
               <div className="space-y-2 text-sm text-muted-foreground font-mono">
                 <div className="flex items-start space-x-2 group">
                   <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-tt-blue-500/70" />
-                  <span className="group-hover:text-tt-blue-500 transition-colors">New Jersey, 07023, USA</span>
+                  <span className="group-hover:text-tt-blue-500 transition-colors">{company.address}</span>
                 </div>
                 <div className="flex items-center space-x-2 group">
                   <Phone className="w-4 h-4 text-tt-blue-500/70" />
-                  <span className="group-hover:text-tt-blue-500 transition-colors">+1 (888) 999-0000</span>
+                  <span className="group-hover:text-tt-blue-500 transition-colors">{company.phone}</span>
                 </div>
                 <div className="flex items-center space-x-2 group">
                   <Mail className="w-4 h-4 text-tt-blue-500/70" />
-                  <span className="group-hover:text-tt-blue-500 transition-colors">info@tech-tronics.ai</span>
+                  <span className="group-hover:text-tt-blue-500 transition-colors">{company.email}</span>
                 </div>
               </div>
             </div>
@@ -141,7 +147,7 @@ export function Footer() {
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-8 terminal-card rounded-md px-6 py-4 mt-4">
               {/* Copyright: monospace, dim green, blinking cursor */}
               <div className="text-xs font-mono text-tt-blue-500/60">
-                &copy; {new Date().getFullYear()} Techtronics International. All
+                &copy; {new Date().getFullYear()} {company.legalName}. All
                 rights reserved.
                 <span className="inline-block w-2 h-4 bg-tt-blue-500 ml-1 align-middle animate-blink" />
               </div>
@@ -190,7 +196,7 @@ export function Footer() {
             </p>
             {/* Copyright: monospace, dim green, blinking cursor */}
             <div className="text-xs font-mono text-tt-blue-500/60">
-              &copy; {new Date().getFullYear()} Techtronics International. All
+              &copy; {new Date().getFullYear()} {company.legalName}. All
               rights reserved.
               <span className="inline-block w-2 h-4 bg-tt-blue-500 ml-1 align-middle animate-blink" />
             </div>
@@ -199,11 +205,11 @@ export function Footer() {
           <div className="text-center space-y-2 text-sm text-muted-foreground font-mono">
             <div className="flex items-center justify-center space-x-2">
               <Phone className="w-4 h-4 text-tt-blue-500/70" />
-              <span>+1 (888) 999-0000</span>
+              <span>{company.phone}</span>
             </div>
             <div className="flex items-center justify-center space-x-2">
               <Mail className="w-4 h-4 text-tt-blue-500/70" />
-              <span>info@tech-tronics.ai</span>
+              <span>{company.email}</span>
             </div>
           </div>
 

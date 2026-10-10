@@ -8,6 +8,7 @@ import { ContactForm } from "@/components/contact-form"
 import { OfficeLocations } from "@/components/office-locations"
 import { FloatingParticles } from "@/components/floating-particles"
 import Image from "next/image"
+import { company } from "@/lib/company"
 
 export default function ContactPage() {
   return (
@@ -60,10 +61,10 @@ export default function ContactPage() {
 
                 <div className="space-y-5">
                   {[
-                    { icon: Mail, label: "Email Us", value: "info@tech-tronics.ai", color: "from-tt-blue-500/10 to-tt-blue-600/10" },
-                    { icon: Phone, label: "Call Us", value: "+1 (888) 999-0000", color: "from-tt-cyan-500/10 to-tt-cyan-600/10" },
-                    { icon: MapPin, label: "Visit Us", value: "New Jersey, 07023, USA", color: "from-tt-blue-400/10 to-tt-blue-500/10" },
-                    { icon: Clock, label: "Working Hours", value: "Mon - Fri: 9:00 AM - 6:00 PM", color: "from-tt-cyan-400/10 to-tt-cyan-500/10" },
+                    { icon: Mail, label: "Email Us", value: company.email, color: "from-tt-blue-500/10 to-tt-blue-600/10" },
+                    { icon: Phone, label: "Call Us", value: company.phone, color: "from-tt-cyan-500/10 to-tt-cyan-600/10" },
+                    { icon: MapPin, label: "Visit Us", value: company.address, color: "from-tt-blue-400/10 to-tt-blue-500/10" },
+                    { icon: Clock, label: "Working Hours", value: company.supportHours, color: "from-tt-cyan-400/10 to-tt-cyan-500/10" },
                   ].map((item) => (
                     <div key={item.label} className="flex items-start gap-4 p-4 bg-card border border-border rounded-lg hover:border-tt-blue-500/30 transition-all">
                       <div className={`p-3 bg-gradient-to-br ${item.color} border border-border/50 rounded-md flex-shrink-0`}>

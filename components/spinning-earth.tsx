@@ -94,14 +94,25 @@ export function SpinningEarth() {
       rotation += 0.003
     }
 
-    const animate = () => {
+    // Faint background element: ~30fps is visually identical and halves the cost.
+    // Skip frames while the tab is hidden, and stop entirely on unmount.
+    let frameId = 0
+    let lastDraw = 0
+    const animate = (time: number) => {
+      frameId = requestAnimationFrame(animate)
+      if (document.hidden || time - lastDraw < 33) return
+      lastDraw = time
       drawEarth()
-      requestAnimationFrame(animate)
     }
 
-    animate()
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      drawEarth()
+    } else {
+      frameId = requestAnimationFrame(animate)
+    }
 
     return () => {
+      cancelAnimationFrame(frameId)
       window.removeEventListener("resize", resizeCanvas)
     }
   }, [])

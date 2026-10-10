@@ -37,8 +37,18 @@ export function Navbar() {
   const pathname = usePathname()
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener("scroll", handleScroll)
+    // Only touch React state when the threshold is crossed — calling setState on
+    // every scroll event re-rendered the whole navbar on each frame
+    let last = window.scrollY > 20
+    setScrolled(last)
+    const handleScroll = () => {
+      const next = window.scrollY > 20
+      if (next !== last) {
+        last = next
+        setScrolled(next)
+      }
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 

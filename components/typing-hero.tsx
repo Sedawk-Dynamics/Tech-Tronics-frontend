@@ -1,7 +1,7 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
+import { useState, useEffect, useRef } from "react"
+import { motion, useInView } from "framer-motion"
 
 const phrases = [
   "Next-Gen Technology",
@@ -15,9 +15,14 @@ export function TypingHero() {
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0)
   const [displayText, setDisplayText] = useState("")
   const [isDeleting, setIsDeleting] = useState(false)
+  // Typing re-renders and re-lays-out the headline every 50–100ms, so pause it off-screen
+  const containerRef = useRef<HTMLDivElement>(null)
+  const inView = useInView(containerRef)
 
   useEffect(() => {
+    if (!inView) return
     const currentPhrase = phrases[currentPhraseIndex]
+    const isComplete = !isDeleting && displayText.length === currentPhrase.length
 
     const timer = setTimeout(
       () => {
@@ -25,7 +30,7 @@ export function TypingHero() {
           if (displayText.length < currentPhrase.length) {
             setDisplayText(currentPhrase.slice(0, displayText.length + 1))
           } else {
-            setTimeout(() => setIsDeleting(true), 2000)
+            setIsDeleting(true)
           }
         } else {
           if (displayText.length > 0) {
@@ -36,14 +41,14 @@ export function TypingHero() {
           }
         }
       },
-      isDeleting ? 50 : 100
+      isComplete ? 2000 : isDeleting ? 50 : 100
     )
 
     return () => clearTimeout(timer)
-  }, [displayText, isDeleting, currentPhraseIndex])
+  }, [displayText, isDeleting, currentPhraseIndex, inView])
 
   return (
-    <div className="space-y-4">
+    <div ref={containerRef} className="space-y-4">
       <motion.h1
         className="text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight"
         initial={{ opacity: 0, y: 20 }}
@@ -54,11 +59,7 @@ export function TypingHero() {
         <br />
         <span className="bg-clip-text text-transparent bg-gradient-to-r from-tt-blue-400 via-tt-blue-500 to-tt-cyan-500">
           {displayText}
-          <motion.span
-            className="inline-block w-1 h-10 sm:h-14 lg:h-16 bg-gradient-to-b from-tt-blue-500 to-tt-cyan-500 ml-1 align-middle"
-            animate={{ opacity: [0, 1, 0] }}
-            transition={{ duration: 1, repeat: Infinity }}
-          />
+          <span className="inline-block w-1 h-10 sm:h-14 lg:h-16 bg-gradient-to-b from-tt-blue-500 to-tt-cyan-500 ml-1 align-middle animate-blink" />
         </span>
       </motion.h1>
       <motion.p
