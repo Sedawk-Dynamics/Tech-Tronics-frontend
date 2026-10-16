@@ -88,23 +88,31 @@ export default function ContactPage() {
           </div>
         </section>
 
-        {/* Map / Office image */}
-        <section className="px-4 sm:px-6 pb-8">
-          <div className="max-w-7xl mx-auto">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="relative h-64 sm:h-80 rounded-lg overflow-hidden border border-tt-blue-500/15">
-              <Image src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1400&h=500&fit=crop" alt="Our office" fill className="object-cover" unoptimized />
-              <div className="absolute inset-0 bg-gradient-to-r from-tt-blue-800/80 to-tt-blue-900/70" />
-              <div className="absolute inset-0 cyber-grid opacity-20" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center text-white">
-                  <h3 className="text-2xl sm:text-3xl font-bold mb-2">Visit Our Global Offices</h3>
-                  <p className="text-white/60 max-w-md font-mono text-sm">// Strategically located across the world</p>
-                </div>
-              </div>
-            </motion.div>
+        {/* Office location map */}
+        <section className="px-4 sm:px-6 pb-8" aria-labelledby="office-map-title">
+          <div className="max-w-7xl mx-auto overflow-hidden rounded-lg border border-tt-blue-500/15 bg-card">
+            <div className="p-6 sm:p-8">
+              <h2 id="office-map-title" className="text-2xl font-bold mb-3">Find Us in New Delhi</h2>
+              <p className="text-muted-foreground mb-4">{company.address}</p>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(company.address)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-tt-blue-500 hover:underline"
+              >
+                <MapPin className="h-4 w-4" /> Open in Google Maps
+              </a>
+            </div>
+            <iframe
+              title="Techtronics office location in Greater Kailash, New Delhi"
+              src={`https://www.google.com/maps?q=${encodeURIComponent(company.address)}&output=embed`}
+              className="w-full h-80 sm:h-96 border-0"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </section>
-
         {/* Office Locations */}
         <section className="py-16 px-4 sm:px-6 bg-secondary/30 relative overflow-hidden">
           <div className="absolute inset-0 cyber-grid opacity-15 -z-10" />

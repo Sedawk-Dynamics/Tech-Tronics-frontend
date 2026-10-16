@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Inter, Fira_Code } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Chatbot } from "@/components/chatbot"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -63,7 +64,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} ${firaCode.variable}`}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>{children}<Chatbot /></ThemeProvider>
       </body>
     </html>
   )

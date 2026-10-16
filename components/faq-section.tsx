@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronDown, HelpCircle } from "lucide-react"
+import { company } from "@/lib/company"
 
 const faqs = [
   {
@@ -43,7 +44,7 @@ const faqs = [
   {
     question: "How can I get started with Techtronics?",
     answer:
-      "Getting started is easy! Book a free consultation through our contact page or call us at +1 (888) 999-0000. Our team will discuss your requirements, propose a solution, and provide a detailed project roadmap and quote.",
+      `Getting started is easy! Book a free consultation through our contact page or call us at ${company.phone}. Our team will discuss your requirements, propose a solution, and provide a detailed project roadmap and quote.`,
   },
 ]
 
